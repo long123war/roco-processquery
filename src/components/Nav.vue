@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-container>
+    <el-container class="HolyGrail">
       <el-header>
         <div class="logo">
           <a href="./Nav.vue"
@@ -12,12 +12,12 @@
           :default-active="activeIndex"
           mode="horizontal"
           text-color="#666666"
-          active-text-color="#e62129"
+          
           @select="handleSelect"
           menu-trigger="hover"
         >
           <el-submenu index="1">
-            <template slot="title">我的工作台</template>
+            <template slot="title"><span class="title">我的工作台</span></template>
             <el-menu-item index="1-1">选项1</el-menu-item>
             <el-menu-item index="1-2">选项2</el-menu-item>
             <el-menu-item index="1-3">选项3</el-menu-item>
@@ -42,9 +42,24 @@
           </el-submenu>
         </el-menu>
       </el-header>
+      <el-main>
+        <div>
+          <el-carousel height="150px" :arrow='arrow'>
+            <el-carousel-item v-for="item in imgList" :key="item.url">
+              <img src="require(item.url)" >
+
+             </el-carousel-item>
+        </el-carousel>
+        </div>
+      </el-main>
       <!-- 页面主体区域 -->
-      <el-container>
-        <el-main>Main</el-main>
+      <el-container class="HolyGrail-body">
+       
+        <el-main class="HolyGrail-content">
+           main
+        </el-main>
+         <nav class="HolyGrail-nav"></nav>
+         <aside class="HolyGrail-ads"></aside>
       </el-container>
     </el-container>
   </div>
@@ -54,7 +69,12 @@
 export default {
   data() {
     return {
-      activeIndex: "1"
+      activeIndex: "1",
+      imgList:[ { url: require("@/assets/img/1.jpg") },
+                { url: require("@/assets/img/2.jpg") },
+                { url: require("@/assets/img/3.jpg") } 
+                    ],
+       arrow:'never'           
     };
   },
   created() {},
@@ -70,21 +90,56 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 260px 0 260px;
+  padding: 0 360px 0 360px;
 
+  .el-menu--horizontal{
+  
+        >.el-menu-item{
+          border-bottom: none !important;
+    
+           >.is-active {
+           border-bottom: none !important;
+      }
+        }
+}
   /* 整体的下划线进行隐藏 */
   .el-menu {
     border-bottom: none;
     :hover {
-      border-bottom-color: rgb(230, 33, 41) !important;
+      border-bottom:none  !important;
+      
       color: rgb(230, 33, 41) !important;
     }
+      >.el-submenu{
 
-    > .el-submenu {
-      .el-submenu__title {
-        font-size: 20px;
-      }
+        .title{
+          font-size: 20px;
+        }
+      //   .el-menu-item{
+      //     border-bottom-color:#ffffff!important;
+      // }
+      } 
+//        .el-menu--horizontal{
+  
+//         >.el-menu-item{
+//           border-bottom: none !important;
+    
+//            >.is-active {
+//            border-bottom: none !important;
+//       }
+//         }
+// }
+    
+      // .el-menu-demo{
+      //    border-bottom-color:#ffffff!important;
+      // }
+      //  .el-menu-item{
+      //     border-bottom-color:#ffffff!important;
+      // }
     }
+    
   }
-}
+
+
+
 </style>
