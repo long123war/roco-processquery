@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav">
     <el-container class="HolyGrail">
       <el-header>
         <div class="logo">
@@ -11,13 +11,13 @@
         <el-menu
           :default-active="activeIndex"
           mode="horizontal"
-          text-color="#666666"
-          
           @select="handleSelect"
           menu-trigger="hover"
         >
           <el-submenu index="1">
-            <template slot="title"><span class="title">我的工作台</span></template>
+            <template slot="title"
+              ><span class="title">我的工作台</span></template
+            >
             <el-menu-item index="1-1">选项1</el-menu-item>
             <el-menu-item index="1-2">选项2</el-menu-item>
             <el-menu-item index="1-3">选项3</el-menu-item>
@@ -43,23 +43,21 @@
         </el-menu>
       </el-header>
       <el-main>
-        <div>
-          <el-carousel height="150px" :arrow='arrow'>
+        <div class="banner">
+          <el-carousel height="250px" :arrow="arrow" :autoplay="false">
             <el-carousel-item v-for="item in imgList" :key="item.url">
-              <img src="require(item.url)" >
-
-             </el-carousel-item>
-        </el-carousel>
+              <img :src="item.url" width="100%"/>
+            </el-carousel-item>
+          </el-carousel>
         </div>
       </el-main>
       <!-- 页面主体区域 -->
       <el-container class="HolyGrail-body">
-       
         <el-main class="HolyGrail-content">
-           main
+          main
         </el-main>
-         <nav class="HolyGrail-nav"></nav>
-         <aside class="HolyGrail-ads"></aside>
+        <nav class="HolyGrail-nav"></nav>
+        <aside class="HolyGrail-ads"></aside>
       </el-container>
     </el-container>
   </div>
@@ -70,11 +68,12 @@ export default {
   data() {
     return {
       activeIndex: "1",
-      imgList:[ { url: require("@/assets/img/1.jpg") },
-                { url: require("@/assets/img/2.jpg") },
-                { url: require("@/assets/img/3.jpg") } 
-                    ],
-       arrow:'never'           
+      imgList: [
+        { url: require("../assets/img/1.jpg") },
+        { url: require("../assets/img/2.jpg") },
+        { url: require("../assets/img/3.jpg") }
+      ],
+      arrow: "never"
     };
   },
   created() {},
@@ -84,6 +83,22 @@ export default {
   }
 };
 </script>
+<style lang="less">
+.nav {
+  .el-menu--horizontal > .el-submenu.is-active .el-submenu__title {
+    border-bottom: none;
+  }
+  .el-submenu.is-active .el-submenu__title {
+    border-bottom-color: none;
+  }
+  // 修改轮播图的小圆点
+  .el-carousel__button {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+}
+</style>
 
 <style lang="less" scoped>
 .el-header {
@@ -92,54 +107,30 @@ export default {
   align-items: center;
   padding: 0 360px 0 360px;
 
-  .el-menu--horizontal{
-  
-        >.el-menu-item{
-          border-bottom: none !important;
-    
-           >.is-active {
-           border-bottom: none !important;
-      }
-        }
-}
+ 
   /* 整体的下划线进行隐藏 */
   .el-menu {
     border-bottom: none;
     :hover {
-      border-bottom:none  !important;
-      
+      border-bottom: none !important;
+
       color: rgb(230, 33, 41) !important;
     }
-      >.el-submenu{
-
-        .title{
-          font-size: 20px;
+     .el-submenu {
+      .el-menu-item {
+        :hover {
+          color: rgb(230, 33, 41) !important;
+          background-color: pink !important;
         }
-      //   .el-menu-item{
-      //     border-bottom-color:#ffffff!important;
-      // }
-      } 
-//        .el-menu--horizontal{
-  
-//         >.el-menu-item{
-//           border-bottom: none !important;
-    
-//            >.is-active {
-//            border-bottom: none !important;
-//       }
-//         }
-// }
-    
-      // .el-menu-demo{
-      //    border-bottom-color:#ffffff!important;
-      // }
-      //  .el-menu-item{
-      //     border-bottom-color:#ffffff!important;
-      // }
+      }
+      .title {
+        font-size: 20px;
+        color: #666666;
+      }
     }
-    
   }
-
-
-
+}
+.el-main{
+ padding: 0;
+}
 </style>
