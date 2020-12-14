@@ -1,0 +1,23 @@
+{
+  "name": "roco-processquery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/long123war/roco-processquery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/long123war/roco-processquery/issues"
+  },
+  "homepage": "https://github.com/long123war/roco-processquery#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
