@@ -42,7 +42,7 @@ function rocoMenus1(oneArr, twoArr, threeArr) {
 //oneString父层级菜单列表，string
 // twoArr二层级菜单列表，array
 // threeArr三层级菜单列表，array
-function rocoMenus(oneString, twoArr, threeArr) {
+function rocoMenus() {
   // 一级、二级、三级导航栏数据。
   let levelOne = [];
   let levelTwo = [];
@@ -56,7 +56,7 @@ function rocoMenus(oneString, twoArr, threeArr) {
 // id——需要设置的id值
 // menusName需要设置的菜单名称
 // ParentObj需要设置的父对象
-function getRocomenus(id, menusName, parentObj) {
+function getRocomenus1(id, menusName, parentObj) {
   let menusObj = {};
   if (parentObj) {
     parentObj.children = [];
@@ -72,6 +72,18 @@ function getRocomenus(id, menusName, parentObj) {
 
   return menusObj;
 }
+function getRocomenus(menusNameArr) {
+  let menusObj = {};
+  let menusArr = [];
+  for (let i in menusNameArr) {
+    menusObj.id = i;
+    menusObj.menusName = menusNameArr[i];
+    menusObj.children = [];
+    menusArr.push(menusObj);
+  }
+  return menusArr;
+}
 module.exports = {
   rocoMenus: rocoMenus,
+  getRocomenus: getRocomenus,
 };
