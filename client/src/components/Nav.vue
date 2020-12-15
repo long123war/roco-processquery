@@ -39,7 +39,7 @@
             <el-menu-item index="3-3">选项3</el-menu-item>
           </el-submenu>
           <el-submenu index="4">
-           <template slot="title"
+            <template slot="title"
               ><span class="title">我的工作台</span></template
             >
             <el-menu-item index="4-1">选项1</el-menu-item>
@@ -52,7 +52,7 @@
         <div class="banner">
           <el-carousel height="250px" :arrow="arrow" :autoplay="false">
             <el-carousel-item v-for="item in imgList" :key="item.url">
-              <img :src="item.url" width="100%"/>
+              <img :src="item.url" width="100%" />
             </el-carousel-item>
           </el-carousel>
         </div>
@@ -60,26 +60,52 @@
       <!-- 页面主体区域 -->
       <el-container class="HolyGrail-body">
         <el-main class="HolyGrail-content">
-          <el-menu  mode="horizontal">
-           <el-tabs :tab-position="tabPosition" style="height: 300px;">
-                <el-tab-pane label="硬装">                   
-                     <h4 class="door">门</h4>        
-                   <el-menu-item>
-                     <a href="https://www.ele.me" target="_blank">室内门</a>
-                     </el-menu-item>
-                       <el-menu-item >
-                     <a href="https://www.ele.me" target="_blank">大门</a>
-                     </el-menu-item>
-                      <el-menu-item >
-                     <a href="https://www.ele.me" target="_blank">移门</a>
-                     </el-menu-item>
-                     <el-menu-item><br><div class="line">123</div></el-menu-item>
-                     </el-tab-pane>
-                <el-tab-pane label="配置管理">配置管理</el-tab-pane>
-                <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-                <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
+          <el-menu mode="horizontal">
+            <el-tabs
+              v-model="activeName"
+              :tab-position="tabPosition"
+              style="height: 300px;"
+            >
+              <el-tab-pane name="硬装">
+                <span slot="label" @mouseover="changeTabs('硬装')">
+                  <span>硬装</span>
+                  <i class="el-icon-arrow-right"></i>
+                </span>
+                <h4 class="door">门</h4>
+                <el-menu-item>
+                  <a href="https://www.ele.me" target="_blank">室内门</a>
+                </el-menu-item>
+                <el-menu-item>
+                  <a href="https://www.ele.me" target="_blank">大门</a>
+                </el-menu-item>
+                <el-menu-item>
+                  <a href="https://www.ele.me" target="_blank">移门</a>
+                </el-menu-item>
+                <el-menu-item
+                  ><br />
+                  <div class="line">123</div></el-menu-item
+                >
+              </el-tab-pane>
+              <el-tab-pane name="配置管理">
+                <span slot="label" @mouseover="changeTabs('配置管理')">
+                  <span>配置管理</span>
+                  <i class="el-icon-arrow-right"></i>
+                </span>
+              </el-tab-pane>
+              <el-tab-pane name="角色管理">
+                <span slot="label" @mouseover="changeTabs('角色管理')">
+                  <span>角色管理</span>
+                  <i class="el-icon-arrow-right"></i>
+                </span>
+              </el-tab-pane>
+              <el-tab-pane name="定时任务补偿">
+                <span slot="label" @mouseover="changeTabs('定时任务补偿')">
+                  <span>定时任务补偿</span>
+                  <i class="el-icon-arrow-right"></i>
+                </span>
+              </el-tab-pane>
             </el-tabs>
-          </el-menu> 
+          </el-menu>
         </el-main>
         <nav class="HolyGrail-nav"></nav>
         <aside class="HolyGrail-ads"></aside>
@@ -99,14 +125,34 @@ export default {
         { url: require("../assets/img/3.jpg") }
       ],
       arrow: "never",
-       //随意门方向
-       tabPosition:'left'
+      //随意门方向
+      tabPosition: "left",
+      activeName: "硬装"
     };
   },
   created() {},
   methods: {
     // 导航栏触发的函数
-    handleSelect() {}
+    handleSelect() {},
+    changeTabs(tab) {
+      switch (tab) {
+        case "硬装":
+          this.activeName = "硬装";
+          break;
+        case "配置管理":
+          this.activeName = "配置管理";
+          break;
+        case "角色管理":
+          this.activeName = "角色管理";
+          break;
+        case "定时任务补偿":
+          this.activeName = "定时任务补偿";
+          break;
+
+        default:
+          break;
+      }
+    }
   }
 };
 </script>
@@ -124,34 +170,32 @@ export default {
     height: 5px;
     border-radius: 50%;
   }
-  
 }
 // 取消二级菜单的最小宽度
-.el-menu--collapse .el-menu .el-submenu, .el-menu--popup {
-    min-width: 0px;
-    
+.el-menu--collapse .el-menu .el-submenu,
+.el-menu--popup {
+  min-width: 0px;
 }
 //修改随意门的样式
- a:-webkit-any-link {
-    color: #666;
-    cursor: pointer;
-    text-decoration: none;   
-   }
-   .el-menu-item:focus, .el-menu-item:hover {
-    outline: 0;
-   background-color:transparent;   
+a:-webkit-any-link {
+  color: #666;
+  cursor: pointer;
+  text-decoration: none;
 }
-.el-menu-item{
+.el-menu-item:focus,
+.el-menu-item:hover {
+  outline: 0;
+  background-color: transparent;
+}
+.el-menu-item {
   float: left;
   padding: 0 5px;
   margin: 0;
   height: 30px;
   line-height: 30px;
-  :hover{
-    color:rgb(230, 33, 41);
+  :hover {
+    color: rgb(230, 33, 41);
   }
-  
-  
 }
 </style>
 
@@ -162,16 +206,13 @@ export default {
   align-items: center;
   padding: 0 360px 0 360px;
 
- 
   /* 整体的下划线进行隐藏 */
   .el-menu {
     border-bottom: none;
     :hover {
-
       color: rgb(230, 33, 41) !important;
     }
-     .el-submenu {
-      
+    .el-submenu {
       .title {
         font-size: 20px;
         color: #666666;
@@ -181,17 +222,16 @@ export default {
 }
 //修改二级菜单的样式
 .el-menu--horizontal .el-menu .el-menu-item:hover {
-    color: rgb(230, 33, 41);
-    
+  color: rgb(230, 33, 41);
 }
-.el-menu--horizontal .el-menu .el-menu-item{
+.el-menu--horizontal .el-menu .el-menu-item {
   font-size: 16px;
 }
 //取消轮播图两边的padding
-.el-main{
- padding: 0;
+.el-main {
+  padding: 0;
 }
-.door{
-    margin: 10px;
-  }
+.door {
+  margin: 10px;
+}
 </style>
