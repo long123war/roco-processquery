@@ -3,6 +3,9 @@ const url = require("url");
 const app = express();
 const port = 8080;
 const wdProcess = require("./moudle/woodenDoor");
+const cors = require("cors");
+//加载cors,主要用于解决跨域问题，解决跨域问题
+app.use(cors());
 // 定制模块列表请求，请求参数无
 app.get("/Custom", (req, res) => {
   // const urlObj = url.parse(req.url ,true);
