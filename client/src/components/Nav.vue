@@ -13,14 +13,14 @@
           mode="horizontal"
           @select="handleSelect"
           menu-trigger="hover"
+          router
         >
-          <el-submenu index="1">
+          <el-submenu :index="item.id +''" :key='item.id' v-for="item in navList">
             <template slot="title"
-              ><span class="title">我的工作台</span></template
+              ><span class="title">{{item.menusName}}</span></template
             >
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-            <el-menu-item index="1-3">选项3</el-menu-item>
+            <el-menu-item :index="'/'+ subitem.path" :key='subitem.id' v-for="subitem in item.children">{{subitem.menusName}}</el-menu-item>
+           
           </el-submenu>
 
         </el-menu>
@@ -70,7 +70,9 @@ export default {
       //获取导航栏数据
      async getNavlist(){
        const {data:res} = await this.$http.get('Custom')
-       console.log(res)
+      // console.log(res)
+      this.navList = res
+      console.log(this.navList)
       },
 
 
