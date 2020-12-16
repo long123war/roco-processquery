@@ -64,12 +64,16 @@ function custom() {
 // 返回一个对象，该对象包含门洞定制范围和包框定制范围
 function doorScope(doorWayW, doorWayH, doorframeW, doorframeH) {
   return {
+    // 门洞范围最小最大W
     doorWayMinw: doorWayW.min,
     doorWayMaxw: doorWayW.max,
+    // 门洞范围最小最大H
     doorWayMinh: doorWayH.min,
     doorWayMaxh: doorWayH.max,
+    // 包框范围最小最大W
     doorframeMinw: doorframeW.min,
     doorframeMaxw: doorframeW.max,
+    // 包框范围最小最大H
     doorframeMinH: doorframeH.min,
     doorframeMaxH: doorframeH.max,
   };
