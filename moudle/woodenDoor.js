@@ -1,4 +1,4 @@
-// 传入一个数组，返回一个由每个产品对象组成的数组。
+// 传入一个数组，返回一个由每个产品对象组成的数组
 function getRocomenus(menusNameArr) {
   let menusArr = [];
   for (let i in menusNameArr) {
@@ -10,7 +10,7 @@ function getRocomenus(menusNameArr) {
   }
   return menusArr;
 }
-// 添加子列表的方法，parent(Arr)要加到谁里面,childern(Arr)需要增加谁。
+// 添加子列表的方法，parent(Arr)要加到谁里面,childern(Arr)需要增加谁
 function addRocomenus(parentArr, childrenArr) {
   for (let i of childrenArr) {
     parentArr.children.push(i);
@@ -108,7 +108,22 @@ function minProcessMax(name) {
       break;
   }
 }
+//门洞尺寸和包框尺寸的关系，返回门洞对应的包框尺寸
+// 形参：
+// doorWayWvalue：门洞宽
+// doorWayHvalue：门洞高
+// wayD：墙厚
+function doorResults(doorWayWvalue, doorWayHvalue, wayD) {
+  return {
+    doorframeWvalue: 1736,
+    doorframeHvalue: 635,
+  };
+}
 module.exports = {
+  // 定制模块列表
   custom: custom,
+  // 工艺门洞定制范围和包框定制范围
   minProcessMax: minProcessMax,
+  // 计算包框尺寸的值
+  doorResults: doorResults,
 };
