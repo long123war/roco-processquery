@@ -1,0 +1,25 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1607590458479'); /* IE9 */
+  src: url('iconfont.eot?t=1607590458479#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAO8AAsAAAAAB+gAAANtAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqDTIMHATYCJAMMCwgABCAFhG0HORvQBhEVnJXIfhTGbXQoQqOyshik+Ob+y5/Gvg/x8P9Hv9/n3vvG0YqGEfN5edSKwmkGCqMCyaJAwsDTfPr/f+z0By5kXLpRnoTr1NcJ3LTl/k+N9mtBDigLo10+/Y/7O+tyXc9rXKICFrA+z+X07pqC81uW41hD99KjXoBxQAHtjW3cwAUUEDeMXdAStxNomqUEs2vj5AVkhdkvEBfxseFAzliVhsJQF6oVU4t4BoJ6esSeAngKvh//QSPIJJXMHLp3ZB0FZt8Gzwk4hIEI8giQTecGm0XGGlCIw0rvAVwUXYPTVLX45syqIqSpAgwGgVTTVzf6x0tElZnfBkswlvg2cMQE3wkxCdc/iyp6eAbwhljjYVWN0oxaNPoUXiK54TdnS2TGt8+pmGZpVTq4/IiKNLfSW5q4A3UlLaloKmRpagJ8xkRj5e+JITy0eMHK9T2GLkoLm76jVaKK3Xfyt7eA8DN1Yuj3PpNo5Nxtxb0GlfaC3MpNaWFx74bzd4DwMXdg6KjmujY2hpu3U5aXZ0SAh6tNiot72BtwW3m5LTzcJq7lmwuqqRJUOZMA+PbhN+Ux5ScSe/XfV/ZXM42ZcMwUS3MGgPbn0yiySRmlgNML95XHnYg5Ksns5z247rlIKSs4iG0piruc8VjwjYeIs5iIiEcJLvBbVAvYq+eLuenH2bcUG0rad+G3qrgsLPVsV3Dm6fMXZ2kUEffm6jDmznHP5UsubpBH7xUaipIGBO5R/twye/9idHgYLfa3D3wQBvdMr9hJAPI99unn/cZX6JdyKKvRT51WwNd/NkDmopsf1G/NF/wqWceKoilMWy6K1JEaiewG5UVYNDWdH1QMQ4/D9ZPO+YS6SYKkZgZZ3RxZWGuoaFlHVd0GmlbZzm4ZyYATpYEVmzdA6Psg6fpA1vclC+uHiqk/qvqBQ9N+rJdsWYh4sSGUjAbUC4IeB2s7WISFR3S3LCmtCHhXpCUEoCnrfOKAA9IUI5a7a5ktWBp72IPdMOcRJhojai4989RVla26UqnHvhB2ECQxZADlBQTaaGC92kwUPn+EnJtMogZaVfIKkUVoHDRKdQfyoB060W5ln8Wd02LMAhYZ9cAeuFG2oiMwVXeKkMZKfkB40qlQNdtVWy6v799vHTSZa+dIkaPIlzistL/JwbEMRQEAAAA=') format('woff2'),
+  url('iconfont.woff?t=1607590458479') format('woff'),
+  url('iconfont.ttf?t=1607590458479') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1607590458479#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-men:before {
+  content: "\e63a";
+}
+
+.icon-chuangtai:before {
+  content: "\e66a";
+}
+
