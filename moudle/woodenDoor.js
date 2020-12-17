@@ -1,19 +1,32 @@
 // 传入一个数组，返回一个由每个产品对象组成的数组
-function getRocomenus(menusNameArr) {
+function getRocomenus(menusNameArr, pathArr) {
   let menusArr = [];
   for (let i in menusNameArr) {
     let menusObj = {};
     menusObj.id = i;
     menusObj.menusName = menusNameArr[i];
     menusObj.children = [];
+    if (!pathArr) {
+      menusObj.path = null;
+    } else {
+      menusObj.path = pathArr[i];
+    }
     menusArr.push(menusObj);
   }
   return menusArr;
 }
-// 添加子列表的方法，parent(Arr)要加到谁里面,childern(Arr)需要增加谁
+// 添加子列表的方法
+// parentArr必须未数组对象，childrenArr可为数组对象，也可以是值。
+// parentArr(Arr)要加到谁里面,childrenArr(Arr)需要增加谁
 function addRocomenus(parentArr, childrenArr) {
-  for (let i of childrenArr) {
-    parentArr.children.push(i);
+  if (typeof childrenArr === "object") {
+    for (let i of childrenArr) {
+      parentArr.children.push(i);
+    }
+  } else {
+    for (let i of childrenArr) {
+      parentArr.path = childrenArr;
+    }
   }
 }
 // 返回定制模块列表数组对象
@@ -35,23 +48,54 @@ function custom() {
       "通用吊趟门01",
       "哑口套02，窗套02",
     ],
+    woodenDoorPath: [
+      "single",
+      "doubles",
+      "lash",
+      "sliding",
+      "dumbs",
+      "windowt",
+      "Wave",
+      "glassdoor",
+      "generalSliding",
+      "hanging",
+      "dumb",
+    ],
     furniTure: ["五角柜掩门"],
+    furniTurePaht: ["pentagon"],
     amBry: [""],
+    amBryPaht: [""],
   };
   /// custom需要响应的数组。
   const custom = getRocomenus(rocoCustom);
   // 循环要添加到子菜单的数组，加到对应的响应数组对象中
   for (let i in custom) {
-    // (Arr)要加到谁里面,(Arr)需要增加谁。
+    // addRocomenus(Arr)要加到谁里面,(Arr)需要增加谁。
     switch (custom[i].menusName) {
       case "门窗定制":
-        addRocomenus(custom[i], getRocomenus(rocoCustomChildren.woodenDoor));
+        addRocomenus(
+          custom[i],
+          getRocomenus(
+            rocoCustomChildren.woodenDoor,
+            rocoCustomChildren.woodenDoorPath
+          )
+        );
+
         break;
       case "家具定制":
-        addRocomenus(custom[i], getRocomenus(rocoCustomChildren.furniTure));
+        addRocomenus(
+          custom[i],
+          getRocomenus(
+            rocoCustomChildren.furniTure,
+            rocoCustomChildren.furniTurePaht
+          )
+        );
         break;
       case "厨卫定制":
-        addRocomenus(custom[i], getRocomenus(rocoCustomChildren.amBry));
+        addRocomenus(
+          custom[i],
+          getRocomenus(rocoCustomChildren.amBry, rocoCustomChildren.amBryPath)
+        );
         break;
 
       default:
