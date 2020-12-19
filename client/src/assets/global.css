@@ -25,6 +25,8 @@ body,
   flex: 1;
   background-color: rgb(245, 245, 245);
   margin-top: 25px;
+  /* min-width: 1400px;
+  overflow-x: hidden; */
 }
 
 .HolyGrail-nav,

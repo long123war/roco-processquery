@@ -1,4 +1,4 @@
-import { Carousel, CarouselItem, Container, Header, Main, Menu, MenuItem, Submenu, TabPane, Tabs } from 'element-ui'
+import { Aside, Carousel, CarouselItem, Container, Header, Main, Menu, MenuItem, Row, Submenu, TabPane, Tabs } from 'element-ui'
 import Vue from 'vue'
 
 Vue.use(Header)
@@ -11,3 +11,5 @@ Vue.use(Carousel)
 Vue.use(CarouselItem)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.use(Aside)
+Vue.use(Row)

@@ -37,6 +37,7 @@
       <!-- 页面主体区域 -->
       <el-container class="HolyGrail-body">
         <el-main class="HolyGrail-content">
+          <router-view></router-view>
         </el-main>
         <nav class="HolyGrail-nav"></nav>
         <aside class="HolyGrail-ads"></aside>
