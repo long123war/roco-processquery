@@ -5,11 +5,12 @@ body,
   padding: 0;
   margin: 0;
   min-width: 1470px;
+  background-color: #f4f5f5;
 }
 .HolyGrail {
   display: flex;
-  min-height: 100px;
   flex-direction: column;
+  height: 100%;
 }
 
 .el-header {
@@ -37,17 +38,8 @@ body,
   /* 导航放到最左边 */
   order: -1;
 }
-
-@media (max-width: 768px) {
-  .HolyGrail-body {
-    flex-direction: column;
-    flex: 1;
-  }
-  .HolyGrail-nav,
-  .HolyGrail-ads,
-  .HolyGrail-content {
-    flex: auto;
-  }
+.el-card__body {
+  padding: 15px !important;
 }
 /* 修改导航栏隐藏的下划线 */
 /* .el-menu--horizontal>.el-submenu.is-active .el-submenu__title {

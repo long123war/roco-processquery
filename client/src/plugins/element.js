@@ -14,7 +14,12 @@ import {
   Card,
   Button,
   Breadcrumb,
-  BreadcrumbItem
+  BreadcrumbItem,
+  Form,
+  FormItem,
+  Input,
+  Image,
+  Divider
 } from "element-ui";
 import Vue from "vue";
 
@@ -34,3 +39,8 @@ Vue.use(Card);
 Vue.use(Button);
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Input);
+Vue.use(Image);
+Vue.use(Divider);

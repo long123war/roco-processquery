@@ -11,7 +11,7 @@ const routes = [
   {
     path: "/Nav",
     component: Nav,
-    redirect: "/welcome",
+    //redirect: "/welcome",
     children: [
       { path: "/welcome", component: welcome },
       { path: "/single", component: single }

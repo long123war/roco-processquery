@@ -154,13 +154,14 @@ function minProcessMax(name) {
 }
 //门洞尺寸和包框尺寸的关系，返回门洞对应的包框尺寸
 // 形参：
-// doorWayWvalue：门洞宽
-// doorWayHvalue：门洞高
+// doorframeWvalue：门洞宽
+// doorframeHvalue：门洞高
 // wayD：墙厚
 function doorResults(doorWayWvalue, doorWayHvalue, wayD) {
   return {
     doorframeWvalue: 1736,
     doorframeHvalue: 635,
+    wayThick: 240,
   };
 }
 module.exports = {
