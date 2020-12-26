@@ -1,47 +1,59 @@
 <template>
   <div>
     <div class="container">
-     <van-sticky> 
-      <div class="header">
-        <van-row class="headTitle">
-          <van-col class="logo"
-            ><img src="../assets/rocoRogo-red.svg"
-          /></van-col>
-          <van-col class="bread">
-            <van-icon @click="popup" name="wap-nav" />
-            <van-popup v-model="show" position="right">肥猪系右边</van-popup>
-          </van-col>
-        </van-row>
-        <van-tabs @click="tabChange">
-          <van-tab class="tab" v-for="item in tabList"  :key="item.id" :title="item.menusName">
-            
-          </van-tab>
-        </van-tabs>
-      </div>
-    </van-sticky>
+      <van-sticky>
+        <div class="header">
+          <van-row class="headTitle">
+            <van-col class="logo"
+              ><img src="../assets/rocoRogo-red.svg"
+            /></van-col>
+            <van-col class="bread">
+              <van-icon @click="popup" name="wap-nav" />
+              <van-popup v-model="show" position="right">肥猪系右边</van-popup>
+            </van-col>
+          </van-row>
+          <van-tabs @click="tabChange" :line-width='lineWidth'>
+            <van-tab
+              class="tab"
+              v-for="item in tabList"
+              :key="item.id"
+              :title="item.menusName"
+            >
+            </van-tab>
+          </van-tabs>
+        </div>
+      </van-sticky>
       <div class="content">
-       <van-pull-refresh v-model="refreshing" @refresh="onRefresh" success-text="刷新成功">
-        <van-list
-          v-model="loading"
-          :finished="finished"
-          finished-text="没有更多了"
-          @load="onLoad"
-        > 
-        <van-swipe :autoplay="3000">
-          <van-swipe-item v-for="(image, index) in images" :key="index">
-            <img class="swipe-img" v-lazy="image" />
-          </van-swipe-item>
-        </van-swipe>
+        <van-pull-refresh
+          v-model="refreshing"
+          @refresh="onRefresh"
+          success-text="刷新成功"
+        >
+          <van-list
+            v-model="loading"
+            :finished="finished"
+            finished-text="没有更多了"
+            @load="onLoad"
+          >
+            <van-swipe :autoplay="3000">
+              <van-swipe-item v-for="(image, index) in images" :key="index">
+                <img class="swipe-img" v-lazy="image" />
+              </van-swipe-item>
+            </van-swipe>
 
-        <van-grid :border="false" :gutter="10">
-          <van-grid-item v-for="(item, index) in gridImages" :key="index" >
+            <van-grid :border="false" v-for="(item, index1) in gridList" :key="index1">
+              <!-- <van-grid-item v-for="(item, index) in gridImages" :key="index" >
             <van-image round class="imgFeizhu" :src="item" />
             <span v-for="(item, index1) in gridList"
             :key="index1" class="feizhu">{{item.menusName}}</span>
-          </van-grid-item>
-        </van-grid>
-        
-        <!-- <van-grid :border="false" :gutter="10">
+          </van-grid-item> -->
+                <van-grid-item v-for="(i, index2) in item.children" :key="index2">
+                  <van-image round class="imgFeizhu" :src="gitImages(i.menusName)"/>
+                  <span>{{i.menusName}}</span>
+                </van-grid-item>
+            </van-grid>
+
+            <!-- <van-grid :border="false" :gutter="10">
           <van-grid-item v-for="(item, index) in gridImages" :key="index">
             <van-image round class="imgFeizhu" :src="item" />
             <span class="feizhu">肥猪</span>
@@ -62,12 +74,12 @@
           </van-list>
         </van-pull-refresh>
       </div>
-      
+
       <div class="footer"></div>
-       <footerbar></footerbar>
-        <!-- <van-tabbar v-model="active">
+      <footerbar></footerbar>
+      <!-- <van-tabbar v-model="active">
           <van-tabbar-item name="home" icon="wap-home" to='/'>首页</van-tabbar-item> -->
-          <!-- <van-tabbar-item
+      <!-- <van-tabbar-item
             name="home"
             replace
             to="/door"
@@ -79,10 +91,10 @@
             <span>门窗定制</span> 
             <template #icon="icon">
              <img :src="props.active ? icon.men : icon.door" /> -->
-              <!-- <i :class="iconfont[item.id]"></i>
+      <!-- <i :class="iconfont[item.id]"></i>
             </template>
           </van-tabbar-item> -->
-          <!-- <van-tabbar-item name="kitchen" replace to="/kitchen">
+      <!-- <van-tabbar-item name="kitchen" replace to="/kitchen">
                  <span>厨卫定制</span> 
                    <template #icon="props">
                     <img :src="props.active ? icon.kitchenA : icon.kitchen" />
@@ -94,8 +106,7 @@
                     <img :src="props.active ? icon.furnitureA : icon.furniture" />
                   </template>
                   </van-tabbar-item>               -->
-        <!-- </van-tabbar> -->
-      
+      <!-- </van-tabbar> -->
     </div>
   </div>
 </template>
@@ -141,36 +152,41 @@ export default {
       //   1: "iconfont icon-men",
       //   2: "iconfont icon-chuangtai",
       // },
-        // icon:{door:require('../assets/img/door.png'),
-        // men:require('../assets/img/men.png'),
-        // kitchen:require('../assets/img/kitchen.png'),
-        // kitchenA:require('../assets/img/kitchenA.png'),
-        // furniture:require('../assets/img/furniture.png'),
-        // furnitureA:require('../assets/img/furnitureActive.png')
-        // },
+      // icon:{door:require('../assets/img/door.png'),
+      // men:require('../assets/img/men.png'),
+      // kitchen:require('../assets/img/kitchen.png'),
+      // kitchenA:require('../assets/img/kitchenA.png'),
+      // furniture:require('../assets/img/furniture.png'),
+      // furnitureA:require('../assets/img/furnitureActive.png')
+      // },
       tabList: [],
-      gridList:[],
+      gridList: [],
       loading: false,
-        finished: false,
+      finished: false,
       refreshing: false,
+      // 标签页底部条宽度
+      lineWidth: 62
     };
   },
   components: { footerbar },
 
   created() {
-   this.tarBar();
+    this.tarBar();
+    
+  },
+  mounted () {
+    
   },
   methods: {
     popup() {
       this.show = true;
     },
-    tabChange(){
-      const tabText = document.getElementsByClassName('van-tab__text')
-      //const tabLine = document.getElementsByClassName('van-tabs__line')
-     // console.log(tabText)
-    //  van-tabs__line.style.width == tabText[0].offsetWidth + 'px'
+    tabChange() {
+        const tabText = document.getElementsByClassName('van-tab--active')
+        console.log(tabText)
+       // this.lineWidth = tabText.childNodes[0].clientWidth
     },
-    onRefresh(){
+    onRefresh() {
       this.finished = false;
       // 重新加载数据
       // 将 loading 设置为 true，表示处于加载状态
@@ -178,28 +194,40 @@ export default {
       this.onLoad();
     },
 
-     async onLoad(){
-        const { data: res } = await this.$http.get("Custom");
-          //console.log(res);
-          let getNew = res
-          this.loading = false;  //本次请求成功后就停止加载，关闭加载图表出现
+    async onLoad() {
+      const { data: res } = await this.$http.get("Custom");
+      //console.log(res);
+      let getNew = res;
+      this.loading = false; //本次请求成功后就停止加载，关闭加载图表出现
 
-         if (this.refreshing) {
-          this.list = [];  //数据请求完后先清空列表
-          this.refreshing = false;  //停止刷新，目的是关闭刷新图标出现
-        }
-         if(getNew == null || getNew.length == 0) {
-          this.finished = true;  //如果请求回来的数据为空，则代表所有数据已加载完毕，此时页面可出现“没有更多数据了”
-          return;
-        }
+      if (this.refreshing) {
+        this.list = []; //数据请求完后先清空列表
+        this.refreshing = false; //停止刷新，目的是关闭刷新图标出现
+      }
+      if (getNew == null || getNew.length == 0) {
+        this.finished = true; //如果请求回来的数据为空，则代表所有数据已加载完毕，此时页面可出现“没有更多数据了”
+        return;
+      }
 
-        this.gridList = this.gridList.concat(getNew) //每次请求回来的数据都与原来的数据进行合并  加载=》合并  刷新=》 清空后合并 
+      this.gridList = this.gridList.concat(getNew); //每次请求回来的数据都与原来的数据进行合并  加载=》合并  刷新=》 清空后合并
     },
     async tarBar() {
       const { data: res } = await this.$http.get("Custom");
       console.log(res);
       this.tabList = res;
     },
+    gitImages(menusName){
+      switch (menusName) {
+        case "单开门":
+          return this.gridImages[0];
+        case "双开门":
+          return this.gridImages[1];
+
+        default:
+          return this.gridImages[3];
+      }
+    
+    }
   },
 };
 </script>
@@ -220,8 +248,8 @@ export default {
 // .van-tabbar-item--active{
 //   color: rgb(230, 33, 41);
 // }
-.van-tabs{
-  margin-top:10px;
+.van-tabs {
+  margin-top: 10px;
 }
 // .van-tabs__line{
 //    ;
@@ -235,7 +263,7 @@ export default {
   display: flex;
   justify-content: space-between;
   //margin-top: 10px;
-   background-color: #fff;
+  background-color: #fff;
   .logo {
     padding-left: 20px;
   }
@@ -263,9 +291,7 @@ export default {
   height: 100%;
   background: rgb(230, 33, 41);
 }
-.header{
+.header {
   background-color: #fff;
 }
 </style>
-
-
