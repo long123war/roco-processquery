@@ -6,6 +6,3 @@ body,
   margin: 0;
   background-color: #f4f5f5;
 }
-.van-tabs--line .van-tabs__wrap {
-  height: 46px;
-}
