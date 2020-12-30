@@ -11,7 +11,7 @@
         title-inactive-color="#4C4C4C"
         title-active-color="#E62129"
         @click="clickTab"
-        line-width="33%"
+        :line-width="tabWidth"
       >
         <van-tab
           :title="item.menusName"
@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import loginVue from "../../../../DS-studyProject/src/components/login.vue";
 export default {
   created() {
     this.getMenus();
@@ -63,6 +62,8 @@ export default {
       rocoMenus: [],
       // 控制菜单下拉隐藏
       isMenusBlock: false,
+      // 标签页下划线宽度
+      tabWidth: "33%",
     };
   },
   methods: {
@@ -73,9 +74,6 @@ export default {
           // console.log(res);
           if (res.status !== 200) {
             return;
-          }
-          for (const i of res.data) {
-            i.isMenusBlock = false;
           }
           this.rocoMenus = res.data;
           console.log(this.rocoMenus);
@@ -104,6 +102,7 @@ export default {
           this.isMenusBlock = !this.isMenusBlock;
         }
       }
+      console.log(this.tabWidth);
     },
     clickCell() {
       this.isMenusBlock = false;
