@@ -6,3 +6,7 @@ body,
   margin: 0;
   background-color: #f4f5f5;
 }
+/* 隐藏滚动条 */
+.element::-webkit-scrollbar {
+  display: none;
+}

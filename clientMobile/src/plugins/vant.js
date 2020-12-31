@@ -10,6 +10,7 @@ import {
   Sticky,
   Col,
   Row,
+  Popup,
 } from "vant";
 
 Vue.use(Icon);
@@ -22,3 +23,4 @@ Vue.use(Button);
 Vue.use(Sticky);
 Vue.use(Col);
 Vue.use(Row);
+Vue.use(Popup);

@@ -30,7 +30,7 @@
                 label="劳卡定制模块"
                 icon="new-o"
                 :to="i.path"
-                @click="clickCell"
+                @click="clickCell(i.path)"
               />
             </div>
           </transition>
@@ -39,13 +39,17 @@
     </div>
     <!-- 主内容 -->
     <div>
-      <router-view> </router-view>
+      <test-f :value="test"></test-f>
     </div>
   </div>
 </template>
 
 <script>
+import test from "./woodenDoor/single";
 export default {
+  components: {
+    "test-f": test,
+  },
   created() {
     this.getMenus();
   },
@@ -64,6 +68,7 @@ export default {
       isMenusBlock: false,
       // 标签页下划线宽度
       tabWidth: "33%",
+      test: "测试父组件传值",
     };
   },
   methods: {
@@ -104,8 +109,9 @@ export default {
       }
       console.log(this.tabWidth);
     },
-    clickCell() {
+    clickCell(path) {
       this.isMenusBlock = false;
+      // console.log(path);
     },
   },
   computed: {},
@@ -145,6 +151,9 @@ export default {
   }
   .tabList {
     margin-top: 5px;
+    // 固定高度，超出出现滚动条
+    max-height: 500px;
+    overflow-y: scroll;
     .van-cell {
       box-shadow: inset 0px 0px 1px 0px #000;
       color: #4c4c4c;
@@ -156,6 +165,10 @@ export default {
     .van-cell:last-child {
       border-radius: 0 0 7px 7px;
     }
+  }
+  // 隐藏滚动条
+  .tabList::-webkit-scrollbar {
+    display: none;
   }
 }
 </style>

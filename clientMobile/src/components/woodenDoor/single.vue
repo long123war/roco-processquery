@@ -1,6 +1,6 @@
 <template>
   <div class="single">
-    8============D
+    {{ value }}
   </div>
 </template>
 
@@ -11,6 +11,7 @@ export default {
     return {};
   },
   methods: {},
+  props: ["value"],
 };
 </script>
 <style lang="less"></style>
