@@ -12,27 +12,38 @@
         @click="clickTab"
         :line-width="tabWidth"
       >
-        <van-tab
-          :title="item.menusName"
-          v-for="item in rocoMenus"
-          :key="item.id"
-          :name="item.id"
-        >
-          <transition name="van-slide-down">
-            <div class="swiper-container">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="item in rocoMenus" :key="item.id">
+              <van-tab :title="item.menusName" :name="item.id">
+                <transition name="van-slide-down">
                   <menus-cell
                     v-if="isMenusBlock"
                     class="tabList"
                     :menusList="item.children"
                   >
                   </menus-cell>
-                </div>
-              </div>
+                </transition>
+              </van-tab>
             </div>
-          </transition>
-        </van-tab>
+          </div>
+        </div>
+        <!-- <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="item in rocoMenus" :key="item.id">
+              <van-tab :title="item.menusName" :name="item.id">
+                <transition name="van-slide-down">
+                  <menus-cell
+                    v-if="true"
+                    class="tabList"
+                    :menusList="item.children"
+                  >
+                  </menus-cell>
+                </transition>
+              </van-tab>
+            </div>
+          </div>
+        </div> -->
       </van-tabs>
     </div>
     <!-- 主内容 -->
@@ -45,7 +56,8 @@
 <script>
 import test from "./woodenDoor/single";
 import menusCell from "./rocoMenus";
-import Swiper from "../assets/swiper-bundle.min.js";
+import Swiper from "swiper";
+// import Swiper from "../assets/swiper-bundle.min.js";
 import "../assets/swiper-bundle.min.css";
 
 export default {
@@ -57,25 +69,8 @@ export default {
     this.getMenus();
   },
   mounted() {
-    var mySwiper = new Swiper(".swiper-container", {
-      direction: "vertical", // 垂直切换选项
-      loop: true, // 循环模式选项
-
-      // 如果需要分页器
-      pagination: {
-        el: ".swiper-pagination",
-      },
-
-      // 如果需要前进后退按钮
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-
-      // 如果需要滚动条
-      scrollbar: {
-        el: ".swiper-scrollbar",
-      },
+    this.mySwiper = new Swiper(".swiper-container", {
+      direction: "horizontal", // 横向切换选项
     });
   },
   data() {
@@ -93,6 +88,7 @@ export default {
       // 标签页下划线宽度
       tabWidth: "33%",
       test: "这里是主内容",
+      mySwiper: {},
     };
   },
   methods: {
@@ -117,9 +113,9 @@ export default {
         this.$router.push("/");
       }
     },
-    clickTab() {
+    clickTab(index) {
       // console.log("actived:" + this.actived);
-      // console.log("active:" + this.active);
+      console.log("active:" + this.active);
       // 如果点击的标签页是自己。把下拉菜单隐藏取反。
       if (this.active === this.actived) {
         this.isMenusBlock = !this.isMenusBlock;
@@ -131,7 +127,9 @@ export default {
           this.isMenusBlock = !this.isMenusBlock;
         }
       }
-      console.log(this.tabWidth);
+      // console.log(this.mySwiper.slideTo);
+      // this.$root.eventHub.$emit("changeTab", index);
+      // this.mySwiper.slideTo(this.active, 1000, false);
     },
     clickCell(path) {
       this.isMenusBlock = false;
@@ -186,6 +184,11 @@ export default {
   // 隐藏滚动条
   .tabList::-webkit-scrollbar {
     display: none;
+  }
+  // 菜单栏滑动区
+  .swiper-container {
+    width: 100%;
+    margin: 0;
   }
 }
 </style>
