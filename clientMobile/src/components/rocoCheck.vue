@@ -6,7 +6,6 @@
     <div>
       <van-tabs
         v-model="active"
-        swipeable
         animated
         title-inactive-color="#4C4C4C"
         title-active-color="#E62129"
@@ -20,18 +19,17 @@
           :name="item.id"
         >
           <transition name="van-slide-down">
-            <div v-if="isMenusBlock" class="tabList">
-              <van-cell
-                center
-                clickable
-                v-for="i in item.children"
-                :key="i.id"
-                :title="i.menusName"
-                label="劳卡定制模块"
-                icon="new-o"
-                :to="i.path"
-                @click="clickCell(i.path)"
-              />
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <menus-cell
+                    v-if="isMenusBlock"
+                    class="tabList"
+                    :menusList="item.children"
+                  >
+                  </menus-cell>
+                </div>
+              </div>
             </div>
           </transition>
         </van-tab>
@@ -46,14 +44,40 @@
 
 <script>
 import test from "./woodenDoor/single";
+import menusCell from "./rocoMenus";
+import Swiper from "../assets/swiper-bundle.min.js";
+import "../assets/swiper-bundle.min.css";
+
 export default {
   components: {
     "test-f": test,
+    "menus-cell": menusCell,
   },
   created() {
     this.getMenus();
   },
-  mounted() {},
+  mounted() {
+    var mySwiper = new Swiper(".swiper-container", {
+      direction: "vertical", // 垂直切换选项
+      loop: true, // 循环模式选项
+
+      // 如果需要分页器
+      pagination: {
+        el: ".swiper-pagination",
+      },
+
+      // 如果需要前进后退按钮
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+
+      // 如果需要滚动条
+      scrollbar: {
+        el: ".swiper-scrollbar",
+      },
+    });
+  },
   data() {
     return {
       // 标签页激活的索引
@@ -68,7 +92,7 @@ export default {
       isMenusBlock: false,
       // 标签页下划线宽度
       tabWidth: "33%",
-      test: "测试父组件传值",
+      test: "这里是主内容",
     };
   },
   methods: {
@@ -130,13 +154,6 @@ export default {
     box-shadow: 3px 3px 10px 3px #00000024;
     border-radius: 7px;
     font-size: 24px;
-  }
-  .van-cell__left-icon,
-  .van-cell__right-icon {
-    font-size: 40px;
-    margin-right: 10px;
-    margin-top: 9px;
-    color: #d6d6d6;
   }
 }
 </style>
