@@ -4,6 +4,8 @@ import door from '../components/door.vue';
 import furniture from '../components/furniture.vue';
 import HelloWorld from '../components/HelloWorld.vue';
 import kitchen from '../components/kitchen.vue';
+import popup from '../components/popup.vue';
+import single from '../components/single.vue';
 Vue.use(VueRouter);
 
 const routes = [
@@ -15,7 +17,9 @@ const routes = [
   {
     path: "/HelloWorld",
     
-    component: HelloWorld
+    component: HelloWorld,
+    children:[{ path: 'popup', component: popup },
+  ]
   },
  
   {
@@ -29,7 +33,12 @@ const routes = [
 {
   path: '/furniture', component: furniture
   
+},
+{
+  path: '/single', component: single
+  
 }
+
 
 
 

@@ -7,6 +7,7 @@ import Vue from "vue";
 import App from "./App.vue";
 // 导入字体图标
 import './assets/font/iconfont.css';
+import './assets/global.css';
 //reset css
 import './assets/reset.css';
 import router from "./router";
@@ -37,5 +38,6 @@ axios.defaults.baseURL = 'http://localhost:8080'
 Vue.prototype.$http = axios
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  data:{evenHub:new Vue()}//集中的事件处理器
 }).$mount("#app");
