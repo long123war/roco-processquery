@@ -10,7 +10,7 @@
       label="劳卡定制模块"
       icon="new-o"
       :to="i.path"
-      @click="clickCell(i.path)"
+      @click="clickCell(i.menusName)"
     />
   </div>
 </template>
@@ -21,7 +21,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    clickCell(menusName) {
+      this.$emit("event-path", menusName);
+    },
+  },
   props: ["menusList"],
 };
 </script>

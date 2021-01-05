@@ -6,50 +6,54 @@
     <div>
       <van-tabs
         v-model="active"
+        swipeable
         animated
         title-inactive-color="#4C4C4C"
         title-active-color="#E62129"
         @click="clickTab"
         :line-width="tabWidth"
       >
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="item in rocoMenus" :key="item.id">
-              <van-tab :title="item.menusName" :name="item.id">
-                <transition name="van-slide-down">
-                  <menus-cell
-                    v-if="isMenusBlock"
-                    class="tabList"
-                    :menusList="item.children"
-                  >
-                  </menus-cell>
-                </transition>
-              </van-tab>
-            </div>
+        <van-tab
+          v-for="item in rocoMenus"
+          :key="item.id"
+          :title="item.menusName"
+          :name="item.id"
+        >
+          <transition name="van-slide-down">
+            <!-- @event-path接受子组件传递的值 -->
+            <menus-cell
+              @event-path="clickCell"
+              v-if="isMenusBlock"
+              class="tabList"
+              :menusList="item.children"
+            >
+            </menus-cell>
+          </transition>
+        </van-tab>
+      </van-tabs>
+      <!-- <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" v-for="item in rocoMenus" :key="item.id">
+            <transition name="van-slide-down">
+              <menus-cell
+                v-if="true"
+                class="tabList"
+                :menusList="item.children"
+              >
+              </menus-cell>
+            </transition>
           </div>
         </div>
-        <!-- <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="item in rocoMenus" :key="item.id">
-              <van-tab :title="item.menusName" :name="item.id">
-                <transition name="van-slide-down">
-                  <menus-cell
-                    v-if="true"
-                    class="tabList"
-                    :menusList="item.children"
-                  >
-                  </menus-cell>
-                </transition>
-              </van-tab>
-            </div>
-          </div>
-        </div> -->
-      </van-tabs>
+      </div> -->
     </div>
     <!-- 主内容 -->
     <div>
       <test-f :value="test"></test-f>
     </div>
+    <!-- 底栏 -->
+    <component :is="footId" :select="selectName"></component>
+    <!-- 结果弹出框 -->
+    <result-dialog></result-dialog>
   </div>
 </template>
 
@@ -57,22 +61,31 @@
 import test from "./woodenDoor/single";
 import menusCell from "./rocoMenus";
 import Swiper from "swiper";
-// import Swiper from "../assets/swiper-bundle.min.js";
 import "../assets/swiper-bundle.min.css";
+import doorFoot from "./doorFoot.vue";
+import furnitureFoot from "./furnitureFoot.vue";
+import kitchenFoot from "./kitchenFoot.vue";
+import resultDialog from "./resultDialog.vue";
 
 export default {
   components: {
     "test-f": test,
     "menus-cell": menusCell,
+    "result-dialog": resultDialog,
+    doorFoot: {
+      template: "<doorFoot></doorFoot>",
+    },
+    furnitureFoot: {
+      template: "<furnitureFoot></furnitureFoot>",
+    },
+    kitchenFoot: {
+      template: "<kitchenFoot></kitchenFoot>",
+    },
   },
   created() {
     this.getMenus();
   },
-  mounted() {
-    this.mySwiper = new Swiper(".swiper-container", {
-      direction: "horizontal", // 横向切换选项
-    });
-  },
+  mounted() {},
   data() {
     return {
       // 标签页激活的索引
@@ -88,7 +101,8 @@ export default {
       // 标签页下划线宽度
       tabWidth: "33%",
       test: "这里是主内容",
-      mySwiper: {},
+      // 选择的定制模块
+      selectName: "",
     };
   },
   methods: {
@@ -113,7 +127,7 @@ export default {
         this.$router.push("/");
       }
     },
-    clickTab(index) {
+    clickTab() {
       // console.log("actived:" + this.actived);
       console.log("active:" + this.active);
       // 如果点击的标签页是自己。把下拉菜单隐藏取反。
@@ -131,12 +145,27 @@ export default {
       // this.$root.eventHub.$emit("changeTab", index);
       // this.mySwiper.slideTo(this.active, 1000, false);
     },
-    clickCell(path) {
+    clickCell(menusName) {
       this.isMenusBlock = false;
-      // console.log(path);
+      this.selectName = menusName;
+      // console.log(this.selectName);
     },
   },
-  computed: {},
+  computed: {
+    // 底部查询动态组件
+    footId() {
+      switch (this.active) {
+        case "0":
+          return doorFoot;
+        case "1":
+          return furnitureFoot;
+        case "2":
+          return kitchenFoot;
+        default:
+          return;
+      }
+    },
+  },
 };
 </script>
 

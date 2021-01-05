@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import rocoCheck from "../components/rocoCheck.vue";
-import foot from "../components/foot.vue";
+import doorFoot from "../components/doorFoot.vue";
 import single from "../components/woodenDoor/single.vue";
 Vue.use(VueRouter);
 
@@ -12,7 +12,7 @@ const routes = [
     component: rocoCheck,
     children: [
       { path: "/single", name: "single", component: single },
-      { path: "/", name: "foot", component: foot },
+      { path: "/", name: "doorFoot", component: doorFoot },
     ],
   },
 ];

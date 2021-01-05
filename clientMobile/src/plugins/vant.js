@@ -11,6 +11,11 @@ import {
   Col,
   Row,
   Popup,
+  Swipe,
+  SwipeItem,
+  Form,
+  Field,
+  Dialog,
 } from "vant";
 
 Vue.use(Icon);
@@ -24,3 +29,8 @@ Vue.use(Sticky);
 Vue.use(Col);
 Vue.use(Row);
 Vue.use(Popup);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
+Vue.use(Form);
+Vue.use(Field);
+Vue.use(Dialog);

@@ -146,6 +146,7 @@
 | --------------- | ---------- | ---- |
 | doorframeWvalue | 下单包框宽 |      |
 | doorframeHvalue | 下单包框高 |      |
+| wayThick        | 下单墙厚   |      |
 
 ```Object
 {
