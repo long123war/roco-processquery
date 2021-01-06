@@ -48,7 +48,7 @@
     </div>
     <!-- 主内容 -->
     <div>
-      <test-f :value="test"></test-f>
+      <main-content :value="test"></main-content>
     </div>
     <!-- 底栏 -->
     <component :is="footId" :select="selectName"></component>
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import test from "./woodenDoor/single";
+import mainContent from "./woodenDoor/single";
 import menusCell from "./rocoMenus";
 import Swiper from "swiper";
 import "../assets/swiper-bundle.min.css";
@@ -69,7 +69,7 @@ import resultDialog from "./resultDialog.vue";
 
 export default {
   components: {
-    "test-f": test,
+    "main-content": mainContent,
     "menus-cell": menusCell,
     "result-dialog": resultDialog,
     doorFoot: {

@@ -16,6 +16,7 @@ import {
   Form,
   Field,
   Dialog,
+  List,
 } from "vant";
 
 Vue.use(Icon);
@@ -34,3 +35,4 @@ Vue.use(SwipeItem);
 Vue.use(Form);
 Vue.use(Field);
 Vue.use(Dialog);
+Vue.use(List);

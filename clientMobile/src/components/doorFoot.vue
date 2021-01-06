@@ -7,13 +7,13 @@
       <!-- 底部中间按钮 -->
       <van-col span="4">
         <van-button
-          icon="add-o"
           type="primary"
           round
           color="#454545"
           @click="clickFoot"
           :class="btnShadow"
         >
+          <van-icon class="iconfont" class-prefix="icon-sousuo" name="sousuo" />
           <span>工艺</span>
         </van-button>
       </van-col>
@@ -66,11 +66,15 @@
             <van-col span="4">
               <van-button
                 color="#454545"
-                icon="add-o"
                 round
                 type="info"
                 native-type="submit"
               >
+                <van-icon
+                  class="iconfont"
+                  class-prefix="icon-sousuo"
+                  name="sousuo"
+                />
                 <span>查询</span>
               </van-button>
             </van-col>
@@ -163,13 +167,20 @@ export default {
   .isshadow {
     box-shadow: inset 3px 3px 3px #000;
   }
-  .van-button__content {
+
+  .van-button__text {
+    // 垂直上下
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    .van-button__icon {
+    .van-icon {
       font-size: 30px;
+      color: #e62129;
+    }
+    .iconfont {
+      font-size: 30px;
+      color: #e62129;
     }
   }
   .van-popup {

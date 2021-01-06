@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import "../src/plugins/vant";
 import "../src/assets/global.css";
+import "../src/assets/icon/iconfont.css";
 import "amfe-flexible";
 import axios from "axios";
 

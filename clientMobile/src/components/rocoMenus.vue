@@ -1,17 +1,21 @@
 <template>
   <!-- 菜单列表组件 -->
   <div class="roco-menus">
-    <van-cell
-      center
-      clickable
-      v-for="i in menusList"
-      :key="i.id"
-      :title="i.menusName"
-      label="劳卡定制模块"
-      icon="new-o"
-      :to="i.path"
-      @click="clickCell(i.menusName)"
-    />
+    <van-list>
+      <van-cell
+        center
+        clickable
+        v-for="i in menusList"
+        :key="i.id"
+        :title="i.menusName"
+        label="劳卡定制模块"
+        :to="i.path"
+        class="iconfont"
+        icon-prefix="icon"
+        icon="shuangkaimen"
+        @click="clickCell(i.menusName)"
+      />
+    </van-list>
   </div>
 </template>
 
@@ -32,6 +36,11 @@ export default {
 
 <style lang="less">
 .roco-menus {
+  .van-cell {
+    i {
+      font-style: normal;
+    }
+  }
   .van-cell__left-icon,
   .van-cell__right-icon {
     font-size: 40px;
