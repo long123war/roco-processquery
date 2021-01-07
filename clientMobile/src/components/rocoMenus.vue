@@ -12,7 +12,7 @@
         :to="i.path"
         class="iconfont"
         icon-prefix="icon"
-        icon="shuangkaimen"
+        :icon="getIcon(i.menusName)"
         @click="clickCell(i.menusName)"
       />
     </van-list>
@@ -26,10 +26,45 @@ export default {
     return {};
   },
   methods: {
+    // 点击菜单触发的回调
     clickCell(menusName) {
       this.$emit("event-path", menusName);
     },
+    // 获得菜单对应的图标
+    getIcon(name) {
+      switch (name) {
+        case "单开门":
+          return "dankaimen";
+        case "子母门":
+          return "zimumen";
+        case "双开门":
+          return "shuangkaimen";
+        case "内置双推拉门":
+          return "tuilamen";
+        case "哑口套，三边窗套01，方形飘窗":
+          return "chuang";
+        case "四边窗套":
+          return "chuang";
+        case "L型飘窗":
+          return "piaochuang";
+        case "通用玻璃门02":
+          return "boli";
+        case "通用推拉门02":
+          return "tuilamen";
+        case "通用吊趟门01":
+          return "tuilamen1";
+        case "哑口套02，窗套02":
+          return "chuang";
+        case "五角柜掩门":
+          return "Anglexiejiao";
+
+        default:
+          return "circle";
+          break;
+      }
+    },
   },
+  computed: {},
   props: ["menusList"],
 };
 </script>
@@ -37,15 +72,13 @@ export default {
 <style lang="less">
 .roco-menus {
   .van-cell {
-    i {
+    .van-cell__left-icon {
       font-style: normal;
     }
   }
-  .van-cell__left-icon,
-  .van-cell__right-icon {
+  .van-cell__left-icon {
     font-size: 40px;
     margin-right: 10px;
-    margin-top: 9px;
     color: #d6d6d6;
   }
 }

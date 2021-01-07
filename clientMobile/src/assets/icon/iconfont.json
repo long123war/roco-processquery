@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "14930450",
+      "name": "Angle斜角",
+      "font_class": "Anglexiejiao",
+      "unicode": "e71f",
+      "unicode_decimal": 59167
+    },
+    {
       "icon_id": "5017102",
       "name": "飘窗",
       "font_class": "piaochuang",

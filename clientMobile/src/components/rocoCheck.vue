@@ -13,12 +13,11 @@
         @click="clickTab"
         :line-width="tabWidth"
       >
-        <van-tab
-          v-for="item in rocoMenus"
-          :key="item.id"
-          :title="item.menusName"
-          :name="item.id"
-        >
+        <van-tab v-for="item in rocoMenus" :key="item.id" :name="item.id">
+          <template #title>
+            {{ item.menusName }}
+            <van-icon :name="item.isTabArrow ? 'arrow-up' : 'arrow-down'" />
+          </template>
           <transition name="van-slide-down">
             <!-- @event-path接受子组件传递的值 -->
             <menus-cell
@@ -106,6 +105,7 @@ export default {
     };
   },
   methods: {
+    // 获取导航栏菜单
     getMenus() {
       this.$http
         .get("Custom")
@@ -113,6 +113,9 @@ export default {
           // console.log(res);
           if (res.status !== 200) {
             return;
+          }
+          for (const i of res.data) {
+            i.isTabArrow = false;
           }
           this.rocoMenus = res.data;
           console.log(this.rocoMenus);
@@ -127,9 +130,20 @@ export default {
         this.$router.push("/");
       }
     },
+    // 点击导航栏触发的回调
     clickTab() {
       // console.log("actived:" + this.actived);
-      console.log("active:" + this.active);
+      // console.log("active:" + this.active);
+      // tab栏剪头动态显示逻辑
+      for (let i in this.rocoMenus) {
+        if (this.active == i) {
+          this.rocoMenus[this.active].isTabArrow = !this.rocoMenus[this.active]
+            .isTabArrow;
+        } else {
+          this.rocoMenus[i].isTabArrow = false;
+        }
+      }
+
       // 如果点击的标签页是自己。把下拉菜单隐藏取反。
       if (this.active === this.actived) {
         this.isMenusBlock = !this.isMenusBlock;
@@ -192,6 +206,9 @@ export default {
   }
   .van-tab {
     font-size: 16px;
+    .van-icon {
+      color: #d6d6d6;
+    }
   }
   .tabList {
     margin-top: 5px;

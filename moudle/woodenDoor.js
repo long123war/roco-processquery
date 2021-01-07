@@ -1,4 +1,4 @@
-// 传入一个数组，返回一个由每个产品对象组成的数组
+// 传入数组，返回一个由每个产品对象组成的数组
 function getRocomenus(menusNameArr, pathArr) {
   let menusArr = [];
   for (let i in menusNameArr) {
@@ -63,8 +63,8 @@ function custom() {
     ],
     furniTure: ["五角柜掩门"],
     furniTurePaht: ["pentagon"],
-    amBry: [""],
-    amBryPaht: [""],
+    amBry: ["暂无"],
+    amBryPaht: ["unknow"],
   };
   /// custom需要响应的数组。
   const custom = getRocomenus(rocoCustom);
