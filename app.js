@@ -1,11 +1,14 @@
 const express = require("express");
 const url = require("url");
+const path = require("path");
 const app = express();
 const port = 8080;
 const wdProcess = require("./moudle/woodenDoor");
 const cors = require("cors");
 //加载cors,主要用于解决跨域问题，解决跨域问题
 app.use(cors());
+// 托管静态资源
+app.use(express.static(path.join(__dirname, "public")));
 // 定制模块列表请求，请求参数无
 app.get("/Custom", (req, res) => {
   // const urlObj = url.parse(req.url ,true);
@@ -36,5 +39,12 @@ app.get("/doorProcess/results", (req, res) => {
     wdProcess.doorResults(query.doorWayWvalue, query.doorWayHvalue, query.wayD)
   );
   // res.send(query);
+});
+// 主内容图片
+app.get("/public/img/", function (req, res) {
+  // console.log("__dirname:" + __dirname);
+  console.log("req.url:" + req.url);
+  res.sendFile(__dirname + "/" + req.url);
+  console.log("Request for " + req.url + " received.");
 });
 app.listen(port, () => console.log(`Example app listening on port port!`));
