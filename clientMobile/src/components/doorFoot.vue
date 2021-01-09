@@ -127,6 +127,7 @@ export default {
             return;
           }
           // this.$emit("results", res.data);
+          // 发送表单请求结果给主页面。
           this.$root.eventHub.$emit("results", res.data);
           this.$root.eventHub.$emit("isshow", true);
         })

@@ -5,6 +5,7 @@ const app = express();
 const port = 8080;
 const wdProcess = require("./moudle/woodenDoor");
 const cors = require("cors");
+const fs = require("fs");
 //加载cors,主要用于解决跨域问题，解决跨域问题
 app.use(cors());
 // 托管静态资源
@@ -42,10 +43,19 @@ app.get("/doorProcess/results", (req, res) => {
 });
 // 主内容图片
 app.get("/img/", function (req, res) {
-  // console.log("__dirname:" + __dirname);
-  console.log("req.url:" + req.url);
-  res.sendFile(__dirname + "/" + req.url);
-  console.log("Request for " + req.url + " received.");
+  fs.readdir("public/img", function (err, files) {
+    let arr = [];
+    if (err) {
+      throw err;
+    }
+    for (const i of files) {
+      arr.push(req.url + i);
+    }
+    res.send(arr);
+    console.log(files);
+  });
+  // res.sendFile(__dirname + "/" + req.url);
+  // console.log("Request for " + req.url + " received.");
 });
 
 app.listen(port, () => console.log(`Example app listening on port port!`));

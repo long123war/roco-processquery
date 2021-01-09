@@ -14,10 +14,13 @@
 <script>
 export default {
   mounted() {
+    // 接收提交表单请求得到的值。
+    // 请求的结果
     this.$root.eventHub.$on("results", (resultsData) => {
       console.log(resultsData);
       this.resultsData = resultsData;
     });
+    // 是否显示的控制变量
     this.$root.eventHub.$on("isshow", (isshow) => {
       console.log(isshow);
       this.show = isshow;
