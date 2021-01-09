@@ -41,10 +41,11 @@ app.get("/doorProcess/results", (req, res) => {
   // res.send(query);
 });
 // 主内容图片
-app.get("/public/img/", function (req, res) {
+app.get("/img/", function (req, res) {
   // console.log("__dirname:" + __dirname);
   console.log("req.url:" + req.url);
   res.sendFile(__dirname + "/" + req.url);
   console.log("Request for " + req.url + " received.");
 });
+
 app.listen(port, () => console.log(`Example app listening on port port!`));
