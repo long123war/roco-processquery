@@ -11,8 +11,9 @@ const routes = [
     name: "rocoCheck",
     component: rocoCheck,
     children: [
-      { path: "/single", name: "single", component: single },
       { path: "/", name: "doorFoot", component: doorFoot },
+      { path: "/single", name: "single", component: single },
+      { path: "/doubles", name: "single", component: single },
     ],
   },
 ];

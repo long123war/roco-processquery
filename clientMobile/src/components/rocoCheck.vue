@@ -21,7 +21,7 @@
           <transition name="van-slide-down">
             <!-- @event-path接受子组件传递的值 -->
             <menus-cell
-              @event-path="clickCell"
+              @event-pathname="clickCell"
               v-if="isMenusBlock"
               class="tabList"
               :menusList="item.children"
@@ -193,9 +193,10 @@ export default {
   .van-tabs {
     margin: 0 5px;
     height: 46px;
-    box-shadow: 3px 3px 10px 3px #00000024;
+    box-shadow: 3px 3px 10px 3px #bfbfbf;
     border-radius: 7px;
     font-size: 24px;
+    margin-bottom: 20px;
   }
 }
 </style>
@@ -207,6 +208,7 @@ export default {
   }
   .van-tab {
     font-size: 16px;
+
     .van-icon {
       color: #d6d6d6;
     }
@@ -236,6 +238,12 @@ export default {
   .swiper-container {
     width: 100%;
     margin: 0;
+  }
+  .van-tabs__content {
+    z-index: 99999;
+  }
+  .van-tabs__track {
+    z-index: 999;
   }
 }
 </style>
