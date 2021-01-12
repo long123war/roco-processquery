@@ -60,6 +60,8 @@ export default {
           return "chuang";
         case "五角柜掩门":
           return "Anglexiejiao";
+        case "轻奢主义":
+          return "dankaimen";
 
         default:
           return "circle";

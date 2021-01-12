@@ -47,6 +47,7 @@ function custom() {
       "通用推拉门02",
       "通用吊趟门01",
       "哑口套02，窗套02",
+      "轻奢主义",
     ],
     woodenDoorPath: [
       "single",
@@ -60,6 +61,7 @@ function custom() {
       "generalSliding",
       "hanging",
       "dumb",
+      "luxurious",
     ],
     furniTure: ["五角柜掩门"],
     furniTurePaht: ["pentagon"],
@@ -147,6 +149,91 @@ function minProcessMax(name) {
         { min: 1208, max: 1948 },
         { min: 1736, max: 2336 }
       );
+    case "垭口套":
+      return doorScope(
+        { min: 320, max: 5840 },
+        { min: 310, max: 5820 },
+        { min: 300, max: 5800 },
+        { min: 300, max: 5800 }
+      );
+    // 哑口套02和窗套02
+    case "垭口套02":
+      return doorScope(
+        { min: 310, max: 4810 },
+        { min: 305, max: 4805 },
+        { min: 300, max: 4800 },
+        { min: 300, max: 4800 }
+      );
+    case "通用推拉门01":
+      return doorScope(
+        { min: 1108, max: 1868 },
+        { min: 1794, max: 2354 },
+        { min: 1088, max: 1828 },
+        { min: 1784, max: 2334 }
+      );
+    case "四边窗套":
+      return doorScope(
+        { min: 320, max: 5840 },
+        { min: 320, max: 5840 },
+        { min: 300, max: 5800 },
+        { min: 300, max: 5800 }
+      );
+    case "轻奢主义":
+      return doorScope(
+        { min: 639, max: 1059 },
+        { min: 1738, max: 2383 },
+        { min: 629, max: 1049 },
+        { min: 1733, max: 2383 }
+      );
+    case "通用玻璃门02":
+      return doorScope(
+        { min: 666, max: 1166 },
+        { min: 1848, max: 2448 },
+        { min: 666, max: 1166 },
+        { min: 1848, max: 2448 }
+      );
+    case "通用推拉门02":
+      return [
+        {
+          num: "2",
+          doorScope: doorScope(
+            { min: 1337, max: 2537 },
+            { min: 1885, max: 2485 },
+            { min: 1337, max: 2537 },
+            { min: 1885, max: 2485 }
+          ),
+        },
+        {
+          num: "4",
+          doorScope: doorScope(
+            { min: 2421, max: 5021 },
+            { min: 1885, max: 2485 },
+            { min: 2421, max: 5021 },
+            { min: 1885, max: 2485 }
+          ),
+        },
+      ];
+    case "通用吊趟门01":
+      return [
+        {
+          num: "2",
+          doorScope: doorScope(
+            { min: 1237, max: 2537 },
+            { min: 1890, max: 2490 },
+            { min: 1237, max: 2537 },
+            { min: 1890, max: 2490 }
+          ),
+        },
+        {
+          num: "4",
+          doorScope: doorScope(
+            { min: 2421, max: 5021 },
+            { min: 1890, max: 2490 },
+            { min: 2421, max: 5021 },
+            { min: 1890, max: 2490 }
+          ),
+        },
+      ];
 
     default:
       break;

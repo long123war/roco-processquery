@@ -37,6 +37,9 @@ function mainImg(query) {
       case "dumb":
         imgDir = "dumb";
         break;
+      case "luxurious":
+        imgDir = "luxurious";
+        break;
 
       default:
         break;

@@ -65,7 +65,6 @@ import doorFoot from "./doorFoot.vue";
 import furnitureFoot from "./furnitureFoot.vue";
 import kitchenFoot from "./kitchenFoot.vue";
 import resultDialog from "./resultDialog.vue";
-import paramsVue from "../../../../ds-project/src/components/goods/params.vue";
 
 export default {
   components: {

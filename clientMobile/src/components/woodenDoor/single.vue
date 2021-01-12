@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import paramsVue from "../../../../../ds-project/src/components/goods/params.vue";
 export default {
   created() {
     // 接收rocoMenus的菜单地址

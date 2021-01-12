@@ -13,7 +13,17 @@ const routes = [
     children: [
       { path: "/", name: "doorFoot", component: doorFoot },
       { path: "/single", name: "single", component: single },
-      { path: "/doubles", name: "single", component: single },
+      { path: "/doubles", name: "doubles", component: single },
+      { path: "/lash", name: "lash", component: single },
+      { path: "/sliding", name: "sliding", component: single },
+      { path: "/dumbs", name: "dumbs", component: single },
+      { path: "/windowt", name: "windowt", component: single },
+      { path: "/Wave", name: "Wave", component: single },
+      { path: "/glassdoor", name: "glassdoor", component: single },
+      { path: "/generalSliding", name: "generalSliding", component: single },
+      { path: "/hanging", name: "hanging", component: single },
+      { path: "/dumb", name: "dumb", component: single },
+      { path: "/luxurious", name: "luxurious", component: single },
     ],
   },
 ];

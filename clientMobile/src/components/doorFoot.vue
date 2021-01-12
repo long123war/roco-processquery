@@ -128,7 +128,9 @@ export default {
           }
           // this.$emit("results", res.data);
           // 发送表单请求结果给主页面。
+          // 发送请求的结果
           this.$root.eventHub.$emit("results", res.data);
+          // 发送是否查询点击状态信息
           this.$root.eventHub.$emit("isshow", true);
         })
         .catch((err) => {
@@ -149,7 +151,7 @@ export default {
     height: 1px;
     background-color: #454545;
     position: relative;
-    top: 50px;
+    top: 35px;
   }
   .van-button--normal {
     padding: 0;
@@ -158,6 +160,9 @@ export default {
     width: 55px;
     height: 55px;
     box-shadow: 0px 0px 3px 0px #000;
+    :active {
+      box-shadow: inset 3px 3px 3px #000;
+    }
     .van-button__icon {
       color: #e62129;
     }
@@ -165,9 +170,12 @@ export default {
       font-size: 14px;
     }
   }
-  .isshadow {
+  .van-button:active {
     box-shadow: inset 3px 3px 3px #000;
   }
+  // .isshadow {
+  //   box-shadow: inset 3px 3px 3px #000;
+  // }
 
   .van-button__text {
     // 垂直上下
