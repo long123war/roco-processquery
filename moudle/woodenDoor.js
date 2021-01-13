@@ -241,15 +241,47 @@ function minProcessMax(name) {
 }
 //门洞尺寸和包框尺寸的关系，返回门洞对应的包框尺寸
 // 形参：
-// doorframeWvalue：门洞宽
-// doorframeHvalue：门洞高
+// doorWayWvalue：门洞宽
+// doorWayHvalue：门洞高
 // wayD：墙厚
-function doorResults(doorWayWvalue, doorWayHvalue, wayD) {
-  return {
-    doorframeWvalue: 1736,
-    doorframeHvalue: 635,
-    wayThick: 240,
+// name：产品名
+// doorNum：门扇数
+function doorResults(name, doorWayWvalue, doorWayHvalue, wayD, doorNum) {
+  let door = {
+    doorframeWvalue: 0,
+    doorframeHvalue: 0,
   };
+  if (!doorNum) {
+    // 获得对应产品的工艺范围对象scope
+    let scope = minProcessMax(name);
+    // 获取门洞对应包框H
+    door.doorframeHvalue = getsize(
+      doorWayHvalue,
+      scope.doorWayMinh,
+      scope.doorWayMaxh
+    );
+    // 获取门洞对应包框W
+    door.doorframeWvalue = getsize(
+      doorWayWvalue,
+      scope.doorWayMinw,
+      scope.doorWayMaxw
+    );
+  } else {
+  }
+  // doorValue：需要查询值。doorWayMinh：产品工艺最小值。doorWayMaxh：产品工艺最大值。wOrH：查宽还是查高
+  function getsize(doorValue, doorWayMin, doorWayMax, wOrH) {
+    // 如果门洞高/宽在可做工艺范围内，就执行遍历
+    if (!isNaN(doorValue) && doorValue > doorWayMin && doorValue < doorWayMax) {
+      // 从可做最小工艺~最小工艺+10开始，如果门洞宽不在范围内，就把范围值+10，继续对比。直到找到对应范围。
+      while (!(doorValue > doorWayMin && doorValue < doorWayMin + 10)) {
+        doorWayMin = doorWayMin + 10;
+      }
+      // 找到对应范围后，可做工艺最小值-10就是对应的包框尺寸
+      return doorWayMin - 10;
+    }
+  }
+
+  return door;
 }
 module.exports = {
   // 定制模块列表

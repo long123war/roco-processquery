@@ -30,16 +30,24 @@ app.get("/doorProcess", (req, res) => {
 });
 // 计算包框尺寸的值
 // 请求参数：
+// name：产品名
 // doorWayWvalue：门洞宽
 // doorWayHvalue：门洞高
 // wayD：墙厚
+// doorNum：门扇数
 app.get("/doorProcess/results", (req, res) => {
   // 解析请求参数
   const urlObj = url.parse(req.url, true);
   const query = urlObj.query;
 
   res.send(
-    wdProcess.doorResults(query.doorWayWvalue, query.doorWayHvalue, query.wayD)
+    wdProcess.doorResults(
+      query.name,
+      query.doorWayWvalue,
+      query.doorWayHvalue,
+      query.wayD,
+      query.doorNum
+    )
   );
   // res.send(query);
 });
