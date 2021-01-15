@@ -128,70 +128,108 @@ function doorScope(doorWayW, doorWayH, doorframeW, doorframeH) {
 function minProcessMax(name) {
   switch (name) {
     // doorScope传入对象依次未：门洞范围最小最大W，门洞范围最小最大H，包框范围最小最大W，包框范围最小最大H
+    // 产品换算规则对象：sortW，sort:1需要换算，门洞是范围，间隔sizeSpace。包框相对门洞尺寸差值dValue
+    // sortH，sort:2需要换算，门洞是固定值，间隔sizeSpace。包框相对门洞尺寸差值dValue
     case "单开门":
-      return doorScope(
-        { min: 655, max: 1055 },
-        { min: 1746, max: 2356 },
-        { min: 635, max: 1015 },
-        { min: 1736, max: 2336 }
-      );
+      return {
+        doorScope: doorScope(
+          { min: 655, max: 1055 },
+          { min: 1746, max: 2356 },
+          { min: 635, max: 1015 },
+          { min: 1736, max: 2336 }
+        ),
+        sortH: { sort: 1, sizeSpace: 10, dValue: 10 },
+        sortW: { sort: 1, sizeSpace: 20, dValue: 20 },
+      };
     case "子母门":
-      return doorScope(
-        { min: 928, max: 1388 },
-        { min: 1746, max: 2356 },
-        { min: 908, max: 1348 },
-        { min: 1736, max: 2336 }
-      );
+      return {
+        doorScope: doorScope(
+          { min: 928, max: 1388 },
+          { min: 1746, max: 2356 },
+          { min: 908, max: 1348 },
+          { min: 1736, max: 2336 }
+        ),
+        sortH: { sort: 1, sizeSpace: 10, dValue: 10 },
+        sortW: { sort: 1, sizeSpace: 20, dValue: 20 },
+      };
     case "双开门":
-      return doorScope(
-        { min: 1228, max: 1988 },
-        { min: 1746, max: 2356 },
-        { min: 1208, max: 1948 },
-        { min: 1736, max: 2336 }
-      );
+      return {
+        doorScope: doorScope(
+          { min: 1228, max: 1988 },
+          { min: 1746, max: 2356 },
+          { min: 1208, max: 1948 },
+          { min: 1736, max: 2336 }
+        ),
+        sortH: { sort: 1, sizeSpace: 10, dValue: 10 },
+        sortW: { sort: 1, sizeSpace: 20, dValue: 20 },
+      };
     case "垭口套":
-      return doorScope(
-        { min: 320, max: 5840 },
-        { min: 310, max: 5820 },
-        { min: 300, max: 5800 },
-        { min: 300, max: 5800 }
-      );
+      return {
+        doorScope: doorScope(
+          { min: 320, max: 5840 },
+          { min: 310, max: 5820 },
+          { min: 300, max: 5800 },
+          { min: 300, max: 5800 }
+        ),
+        sortH: { sort: 1, sizeSpace: 10, dValue: 10 },
+        sortW: { sort: 1, sizeSpace: 20, dValue: 20 },
+      };
     // 哑口套02和窗套02
     case "垭口套02":
-      return doorScope(
-        { min: 310, max: 4810 },
-        { min: 305, max: 4805 },
-        { min: 300, max: 4800 },
-        { min: 300, max: 4800 }
-      );
+      return {
+        doorScope: doorScope(
+          { min: 310, max: 4810 },
+          { min: 305, max: 4805 },
+          { min: 300, max: 4800 },
+          { min: 300, max: 4800 }
+        ),
+        sortH: { sort: 1, sizeSpace: 10, dValue: 10 },
+        sortW: { sort: 1, sizeSpace: 20, dValue: 20 },
+      };
     case "通用推拉门01":
-      return doorScope(
-        { min: 1108, max: 1868 },
-        { min: 1794, max: 2354 },
-        { min: 1088, max: 1828 },
-        { min: 1784, max: 2334 }
-      );
+      return {
+        doorScope: doorScope(
+          { min: 1108, max: 1868 },
+          { min: 1794, max: 2354 },
+          { min: 1088, max: 1828 },
+          { min: 1784, max: 2334 }
+        ),
+        sortH: { sort: 1, sizeSpace: 10, dValue: 10 },
+        sortW: { sort: 1, sizeSpace: 20, dValue: 20 },
+      };
     case "四边窗套":
-      return doorScope(
-        { min: 320, max: 5840 },
-        { min: 320, max: 5840 },
-        { min: 300, max: 5800 },
-        { min: 300, max: 5800 }
-      );
+      return {
+        doorScope: doorScope(
+          { min: 320, max: 5840 },
+          { min: 320, max: 5840 },
+          { min: 300, max: 5800 },
+          { min: 300, max: 5800 }
+        ),
+        sortH: { sort: 1, sizeSpace: 20, dValue: 20 },
+        sortW: { sort: 1, sizeSpace: 20, dValue: 20 },
+      };
     case "轻奢主义":
-      return doorScope(
-        { min: 639, max: 1059 },
-        { min: 1738, max: 2383 },
-        { min: 629, max: 1049 },
-        { min: 1733, max: 2383 }
-      );
+      return {
+        doorScope: doorScope(
+          { min: 639, max: 1059 },
+          { min: 1738, max: 2383 },
+          { min: 629, max: 1049 },
+          { min: 1733, max: 2383 }
+        ),
+        sortH: { sort: 2, sizeSpace: 1, dValue: 5 },
+        sortW: { sort: 2, sizeSpace: 1, dValue: 10 },
+      };
     case "通用玻璃门02":
-      return doorScope(
-        { min: 666, max: 1166 },
-        { min: 1848, max: 2448 },
-        { min: 666, max: 1166 },
-        { min: 1848, max: 2448 }
-      );
+      return {
+        doorScope: doorScope(
+          { min: 666, max: 1166 },
+          { min: 1848, max: 2448 },
+          { min: 666, max: 1166 },
+          { min: 1848, max: 2448 }
+        ),
+        sortH: "0",
+        sortW: "0",
+      };
     case "通用推拉门02":
       return [
         {
@@ -202,6 +240,8 @@ function minProcessMax(name) {
             { min: 1337, max: 2537 },
             { min: 1885, max: 2485 }
           ),
+          sortH: "0",
+          sortW: "0",
         },
         {
           num: "4",
@@ -211,6 +251,8 @@ function minProcessMax(name) {
             { min: 2421, max: 5021 },
             { min: 1885, max: 2485 }
           ),
+          sortH: "0",
+          sortW: "0",
         },
       ];
     case "通用吊趟门01":
@@ -223,6 +265,8 @@ function minProcessMax(name) {
             { min: 1237, max: 2537 },
             { min: 1890, max: 2490 }
           ),
+          sortH: "0",
+          sortW: "0",
         },
         {
           num: "4",
@@ -232,6 +276,8 @@ function minProcessMax(name) {
             { min: 2421, max: 5021 },
             { min: 1890, max: 2490 }
           ),
+          sortH: "0",
+          sortW: "0",
         },
       ];
 
@@ -250,38 +296,110 @@ function doorResults(name, doorWayWvalue, doorWayHvalue, wayD, doorNum) {
   let door = {
     doorframeWvalue: 0,
     doorframeHvalue: 0,
+    wayD: wayD,
   };
+  // const door1 = { sort: 1, sizeSpace: 10, dValue: 10 };
+  // 如果有门扇数量
   if (!doorNum) {
     // 获得对应产品的工艺范围对象scope
     let scope = minProcessMax(name);
     // 获取门洞对应包框H
+    // getsize(doorValue：需要查询值。doorWayMinh：产品工艺最小值。doorWayMaxh：产品工艺最大值。sortObj：产品换算规则对象)
     door.doorframeHvalue = getsize(
       doorWayHvalue,
-      scope.doorWayMinh,
-      scope.doorWayMaxh
+      scope.doorScope.doorWayMinh,
+      scope.doorScope.doorWayMaxh,
+      scope.sortH
     );
     // 获取门洞对应包框W
     door.doorframeWvalue = getsize(
       doorWayWvalue,
-      scope.doorWayMinw,
-      scope.doorWayMaxw
+      scope.doorScope.doorWayMinw,
+      scope.doorScope.doorWayMaxw,
+      scope.sortW
     );
+    // 如果没有门扇数量
   } else {
-  }
-  // doorValue：需要查询值。doorWayMinh：产品工艺最小值。doorWayMaxh：产品工艺最大值。wOrH：查宽还是查高
-  function getsize(doorValue, doorWayMin, doorWayMax, wOrH) {
-    // 如果门洞高/宽在可做工艺范围内，就执行遍历
-    if (!isNaN(doorValue) && doorValue > doorWayMin && doorValue < doorWayMax) {
-      // 从可做最小工艺~最小工艺+10开始，如果门洞宽不在范围内，就把范围值+10，继续对比。直到找到对应范围。
-      while (!(doorValue > doorWayMin && doorValue < doorWayMin + 10)) {
-        doorWayMin = doorWayMin + 10;
+    // 获得对应产品的工艺范围数组对象scope
+    let scope = minProcessMax(name);
+    for (const i of scope) {
+      if (i.num == doorNum) {
+        // 获取门洞对应包框H
+        door.doorframeHvalue = getsize(
+          doorWayHvalue,
+          i.doorScope.doorWayMinh,
+          i.doorScope.doorWayMaxh,
+          i.sortH
+        );
+        // 获取门洞对应包框W
+        door.doorframeWvalue = getsize(
+          doorWayWvalue,
+          i.doorScope.doorWayMinw,
+          i.doorScope.doorWayMaxw,
+          i.sortW
+        );
       }
-      // 找到对应范围后，可做工艺最小值-10就是对应的包框尺寸
-      return doorWayMin - 10;
     }
   }
-
   return door;
+  // 算法函数getsize
+  // doorValue：需要查询值。doorWayMinh：产品工艺最小值。doorWayMaxh：产品工艺最大值。
+  // sortObj：获取尺寸的类别。
+  // "0":无需换算，门洞直接等于包框。
+  // "obj={sort:1,sizeSpace:10,dValue:10}":sort:1需要换算，门洞是范围，间隔sizeSpace。包框相对门洞尺寸差值dValue
+  // "obj={sort:2,sizeSpace:1,dValue:5}":sort:2需要换算，门洞是固定值，间隔sizeSpace。包框相对门洞尺寸差值dValue
+  function getsize(doorValue, doorWayMin, doorWayMax, sortObj) {
+    // 如果门洞高/宽在可做工艺范围内才执行
+    if (
+      !isNaN(doorValue) &&
+      doorValue >= doorWayMin &&
+      doorValue < doorWayMax
+    ) {
+      // 如果sortObj是字符串"0"，泽不需要换算,否则需要换算
+      if (typeof sortObj === "string") {
+        switch (sortObj) {
+          case "0":
+            // 因为不需要换算，直接范围doorValue
+            return doorValue;
+
+          default:
+            return console.log(sortObj + "不是有效的参数！");
+        }
+      } else {
+        switch (sortObj.sort) {
+          // 需要换算，门洞是范围值
+          case 1:
+            // 从可做最小工艺~最小工艺+sortObj.sizeSpace开始，如果值不在范围内，就把范围值+sortObj.sizeSpace，继续对比。直到找到对应范围。
+            while (
+              !(
+                doorValue >= doorWayMin &&
+                doorValue < doorWayMin + sortObj.sizeSpace
+              )
+            ) {
+              doorWayMin = doorWayMin + sortObj.sizeSpace;
+            }
+            // 找到对应范围后，可做工艺最小值-sortObj.dValue就是对应的包框尺寸
+            return doorWayMin - sortObj.dValue;
+          // 需要换算，门洞是固定值
+          case 2:
+            // 如果sortObj.sizeSpace是1,就是从工艺最小尺寸开始逐一匹配。无需计算递进值。
+            if (sortObj.sizeSpace == 1) {
+              // 包框尺寸=doorValue-sortObj.dValue
+              return doorValue - sortObj.dValue;
+            } else {
+              // 暂无需求
+              console.log("暂无需求");
+            }
+            break;
+
+          default:
+            return console.log(sortObj.sort + "不是有效的参数！");
+        }
+      }
+    } else {
+      return null;
+    }
+  }
 }
 module.exports = {
   // 定制模块列表
