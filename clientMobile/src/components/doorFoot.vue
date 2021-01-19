@@ -53,10 +53,17 @@
           placeholder="墙厚"
           :rules="[{ required: true, message: '请填写墙厚' }]"
         />
+        <van-field
+          v-model="doorCheck.doorNum"
+          name="门扇数量"
+          label="门扇数量"
+          placeholder="例如，单开门输入1"
+          :rules="[{ required: true, message: '门扇数量' }]"
+        />
         <!-- 弹出层底部按钮 -->
         <div>
           <div class="fromTitle">
-            <span>{{ select }}下单工艺一键查</span>
+            <span>{{ doorCheck.name }}下单工艺一键查</span>
           </div>
           <van-row>
             <van-col span="10">
@@ -99,12 +106,16 @@ export default {
       },
       // 查询尺寸的对象
       doorCheck: {
+        // 产品名
+        name: this.select,
         // 门洞宽
         doorWayWvalue: "",
         // 客户输入的门洞高
         doorWayHvalue: "",
         // 客户输入的墙厚
         wayD: "",
+        // 门扇数
+        doorNum: "",
       },
     };
   },
@@ -137,6 +148,19 @@ export default {
           console.error(err);
           Notify("查询失败！！！");
         });
+    },
+  },
+  computed: {
+    // 借用computed事实获取select的值
+    name() {
+      return this.select;
+    },
+  },
+  watch: {
+    // 监听computed里的name(){},一旦发生变化就会执行这里的name(){}
+    name() {
+      this.doorCheck.name = this.select;
+      console.log(this.doorCheck.name);
     },
   },
 };

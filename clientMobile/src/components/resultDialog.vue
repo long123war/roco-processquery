@@ -5,7 +5,7 @@
         v-for="(item, index) in resultsData"
         :key="index"
         :title="resultsTitleChange(index)"
-        :value="item"
+        :value="item ? item : '不在工艺范围'"
       />
     </van-cell-group>
   </van-dialog>
@@ -42,7 +42,7 @@ export default {
           return "包框宽";
         case "doorframeHvalue":
           return "包框高";
-        case "wayThick":
+        case "wayD":
           return "墙厚";
         default:
           return;

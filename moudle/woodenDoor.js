@@ -300,7 +300,7 @@ function doorResults(name, doorWayWvalue, doorWayHvalue, wayD, doorNum) {
   };
   // const door1 = { sort: 1, sizeSpace: 10, dValue: 10 };
   // 如果有门扇数量
-  if (!doorNum) {
+  if (doorNum == 1) {
     // 获得对应产品的工艺范围对象scope
     let scope = minProcessMax(name);
     // 获取门洞对应包框H
