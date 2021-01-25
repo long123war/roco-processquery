@@ -39,7 +39,7 @@ function custom() {
       "单开门",
       "子母门",
       "双开门",
-      "内置双推拉门",
+      "通用推拉门01",
       "哑口套，三边窗套01，方形飘窗",
       "四边窗套",
       "L型飘窗",
@@ -128,8 +128,9 @@ function doorScope(doorWayW, doorWayH, doorframeW, doorframeH) {
 function minProcessMax(name) {
   switch (name) {
     // doorScope传入对象依次未：门洞范围最小最大W，门洞范围最小最大H，包框范围最小最大W，包框范围最小最大H
-    // 产品换算规则对象：sortW，sort:1需要换算，门洞是范围，间隔sizeSpace。包框相对门洞尺寸差值dValue
-    // sortH，sort:2需要换算，门洞是固定值，间隔sizeSpace。包框相对门洞尺寸差值dValue
+    // 产品换算规则对象：sortW,sortH，sort:1需要换算，门洞是范围，间隔sizeSpace。包框相对门洞尺寸差值dValue
+    // sort:2需要换算，门洞是固定值，间隔sizeSpace。包框相对门洞尺寸差值dValue
+    // 如果为 "0"则无需换算
     case "单开门":
       return {
         doorScope: doorScope(
@@ -187,16 +188,19 @@ function minProcessMax(name) {
         sortW: { sort: 1, sizeSpace: 20, dValue: 20 },
       };
     case "通用推拉门01":
-      return {
-        doorScope: doorScope(
-          { min: 1108, max: 1868 },
-          { min: 1794, max: 2354 },
-          { min: 1088, max: 1828 },
-          { min: 1784, max: 2334 }
-        ),
-        sortH: { sort: 1, sizeSpace: 10, dValue: 10 },
-        sortW: { sort: 1, sizeSpace: 20, dValue: 20 },
-      };
+      return [
+        {
+          num: "2",
+          doorScope: doorScope(
+            { min: 1108, max: 1868 },
+            { min: 1794, max: 2354 },
+            { min: 1088, max: 1828 },
+            { min: 1784, max: 2334 }
+          ),
+          sortH: { sort: 1, sizeSpace: 10, dValue: 10 },
+          sortW: { sort: 1, sizeSpace: 20, dValue: 20 },
+        },
+      ];
     case "四边窗套":
       return {
         doorScope: doorScope(
@@ -292,7 +296,7 @@ function minProcessMax(name) {
 // wayD：墙厚
 // name：产品名
 // doorNum：门扇数
-function doorResults(name, doorWayWvalue, doorWayHvalue, wayD, doorNum) {
+function doorResults(name, doorWayWvalue, doorWayHvalue, wayD, doorNum = 1) {
   let door = {
     doorframeWvalue: 0,
     doorframeHvalue: 0,

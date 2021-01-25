@@ -42,7 +42,7 @@ export default {
           return "zimumen";
         case "双开门":
           return "shuangkaimen";
-        case "内置双推拉门":
+        case "通用推拉门01":
           return "tuilamen";
         case "哑口套，三边窗套01，方形飘窗":
           return "chuang";
