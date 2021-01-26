@@ -33,6 +33,15 @@
       <!-- 弹出层内表单 -->
       <van-form @submit="onSubmit">
         <van-field
+          readonly
+          clickable
+          v-model="doorCheck.doorWayWvalue"
+          name="套线款式"
+          label="套线款式"
+          placeholder="套线款式"
+          :rules="[{ required: true, message: '请填写门洞宽' }]"
+        />
+        <van-field
           v-model="doorCheck.doorWayWvalue"
           name="门洞宽"
           label="门洞宽"

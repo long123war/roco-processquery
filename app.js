@@ -31,6 +31,7 @@ app.get("/doorProcess", (req, res) => {
 // 计算包框尺寸的值
 // 请求参数：
 // name：产品名
+// doorLine: 门套线款式
 // doorWayWvalue：门洞宽
 // doorWayHvalue：门洞高
 // wayD：墙厚
@@ -43,6 +44,7 @@ app.get("/doorProcess/results", (req, res) => {
   res.send(
     wdProcess.doorResults(
       query.name,
+      query.doorLine,
       query.doorWayWvalue,
       query.doorWayHvalue,
       query.wayD,
@@ -77,6 +79,14 @@ app.get("/img/woodenDoor", function (req, res) {
     // 响应请求，发送新数组
     res.send(arr);
   });
+});
+// 门套线列表请求
+app.get("/doorBuild", function (req, res) {
+  // 解析请求参数
+  const urlObj = url.parse(req.url, true);
+  const query = urlObj.query;
+
+  res.send(wdProcess.doorBuildMenus());
 });
 
 app.listen(port, () => console.log(`Example app listening on port port!`));

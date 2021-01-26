@@ -291,18 +291,42 @@ function minProcessMax(name) {
 }
 //门洞尺寸和包框尺寸的关系，返回门洞对应的包框尺寸
 // 形参：
+// name：产品名
+// doorLine: 门套线款式
 // doorWayWvalue：门洞宽
 // doorWayHvalue：门洞高
 // wayD：墙厚
-// name：产品名
 // doorNum：门扇数
-function doorResults(name, doorWayWvalue, doorWayHvalue, wayD, doorNum = 1) {
+function doorResults(
+  name,
+  doorLine,
+  doorWayWvalue,
+  doorWayHvalue,
+  wayD,
+  doorNum = 1
+) {
+  // 初始化门对象
   let door = {
+    // 包框宽
     doorframeWvalue: 0,
+    // 包框高
     doorframeHvalue: 0,
+    // 墙厚
     wayD: wayD,
+    // 套板开启面盖墙尺寸，宽度方向
+    buildWayOpenW: 0,
+    // 套板开启面盖墙尺寸，高度方向
+    buildWayOpenH: 0,
+    // 套板非开启面盖墙尺寸，宽度方向
+    buildWayNotOpenW: 0,
+    // 套板非开启面盖墙尺寸，高度方向
+    buildWayNotOpenH: 0,
   };
-  // const door1 = { sort: 1, sizeSpace: 10, dValue: 10 };
+  // 开启面门套板见光厚
+  openD = 12;
+  // 非开启面门套板见光厚
+  notOpenD = 24;
+  // 计算包框尺寸
   // 如果有门扇数量
   if (doorNum == 1) {
     // 获得对应产品的工艺范围对象scope
@@ -345,6 +369,34 @@ function doorResults(name, doorWayWvalue, doorWayHvalue, wayD, doorNum = 1) {
       }
     }
   }
+  door.buildWayOpenW = doorBuildWaySize(
+    doorLine,
+    doorWayWvalue,
+    door.doorframeWvalue,
+    openD,
+    2
+  );
+  door.buildWayOpenH = doorBuildWaySize(
+    doorLine,
+    doorWayHvalue,
+    door.doorframeHvalue,
+    openD,
+    1
+  );
+  door.buildWayNotOpenW = doorBuildWaySize(
+    doorLine,
+    doorWayWvalue,
+    door.doorframeWvalue,
+    notOpenD,
+    2
+  );
+  door.buildWayNotOpenH = doorBuildWaySize(
+    doorLine,
+    doorWayHvalue,
+    door.doorframeHvalue,
+    notOpenD,
+    1
+  );
   return door;
   // 算法函数getsize
   // doorValue：需要查询值。doorWayMinh：产品工艺最小值。doorWayMaxh：产品工艺最大值。
@@ -405,6 +457,54 @@ function doorResults(name, doorWayWvalue, doorWayHvalue, wayD, doorNum = 1) {
     }
   }
 }
+// 门套线款式列表
+function doorBuildMenus() {
+  const doorBuildMenus = ["TX01", "TX02", "TX03", "TX09"];
+  return doorBuildMenus;
+}
+// 计算木门套线盖墙尺寸
+// doorLine：门套线款式
+// doorWayValue：门洞尺寸
+// doorValue：包框尺寸
+// cleadingD:套板见光厚度
+// glueLineNum:胶缝数，默认为1，体现为安装胶缝有多少边，一般宽度方向有2边
+function doorBuildWaySize(
+  doorLine,
+  doorWayValue,
+  doorValue,
+  cleadingD,
+  glueLineNum = 1
+) {
+  // 套线宽度
+  let doorLineW = 0;
+  // 安装胶缝
+  let glueLine = 0;
+  switch (doorLine) {
+    case "TX01":
+      doorLineW = 80;
+      break;
+    case "TX02":
+      doorLineW = 70;
+      break;
+    case "TX03":
+      doorLineW = 60;
+      break;
+    case "TX09":
+      doorLineW = 60;
+      break;
+
+    default:
+      break;
+  }
+  if (glueLineNum == 2) {
+    glueLine = (doorWayValue - doorValue) / 2;
+  } else {
+    glueLine = doorWayValue - doorValue;
+  }
+  // 计算盖墙尺寸
+  const buildWayD = doorLineW - cleadingD - glueLine;
+  return buildWayD;
+}
 module.exports = {
   // 定制模块列表
   custom: custom,
@@ -412,4 +512,8 @@ module.exports = {
   minProcessMax: minProcessMax,
   // 计算包框尺寸的值
   doorResults: doorResults,
+  // 计算木门套线盖墙尺寸
+  doorBuildWaySize: doorBuildWaySize,
+  // 门套线款式列表
+  doorBuildMenus: doorBuildMenus,
 };
