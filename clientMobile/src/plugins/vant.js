@@ -17,6 +17,9 @@ import {
   Field,
   Dialog,
   List,
+  Picker,
+  Collapse,
+  CollapseItem,
 } from "vant";
 
 Vue.use(Icon);
@@ -36,3 +39,6 @@ Vue.use(Form);
 Vue.use(Field);
 Vue.use(Dialog);
 Vue.use(List);
+Vue.use(Picker);
+Vue.use(Collapse);
+Vue.use(CollapseItem);

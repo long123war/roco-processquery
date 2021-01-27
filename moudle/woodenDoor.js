@@ -459,7 +459,7 @@ function doorResults(
 }
 // 门套线款式列表
 function doorBuildMenus() {
-  const doorBuildMenus = ["TX01", "TX02", "TX03", "TX09"];
+  const doorBuildMenus = ["TX01", "TX02", "TX03", "TX09", "other"];
   return doorBuildMenus;
 }
 // 计算木门套线盖墙尺寸

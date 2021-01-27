@@ -37,8 +37,26 @@ function mainImg(query) {
       case "dumb":
         imgDir = "dumb";
         break;
-      case "luxurious":
-        imgDir = "luxurious";
+      case "doorframeWvalue":
+        imgDir = "doorframeWvalue";
+        break;
+      case "doorframeHvalue":
+        imgDir = "doorframeHvalue";
+        break;
+      case "wayD":
+        imgDir = "wayD";
+        break;
+      case "buildWayOpenW":
+        imgDir = "buildWayOpenW";
+        break;
+      case "buildWayOpenH":
+        imgDir = "buildWayOpenH";
+        break;
+      case "buildWayNotOpenW":
+        imgDir = "buildWayNotOpenW";
+        break;
+      case "buildWayNotOpenH":
+        imgDir = "buildWayNotOpenH";
         break;
 
       default:

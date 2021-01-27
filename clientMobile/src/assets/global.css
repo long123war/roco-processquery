@@ -10,3 +10,7 @@ body,
 .element::-webkit-scrollbar {
   display: none;
 }
+.van-dialog {
+  overflow: scroll;
+  max-height: 580px;
+}

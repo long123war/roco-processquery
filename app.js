@@ -80,12 +80,35 @@ app.get("/img/woodenDoor", function (req, res) {
     res.send(arr);
   });
 });
-// 门套线列表请求
-app.get("/doorBuild", function (req, res) {
+
+// 结果图解图片，响应图解图片
+// 请求地址是服务器存放对应品类图片的文件夹，如woodenDoor对应门窗定制
+// 请求参数是产品文件夹，如single是单开门。
+app.get("/img/diagram", function (req, res) {
   // 解析请求参数
   const urlObj = url.parse(req.url, true);
   const query = urlObj.query;
 
+  // 确认请求的是什么产品,获取应该响应哪个文件夹
+  const imgDir = mainContent.mainImg(query);
+  // 读取对应产品文件夹，响应文件夹内的图片
+  fs.readdir(`public/img/diagram/${imgDir}`, function (err, files) {
+    let arr = [];
+    if (err) {
+      throw err;
+    }
+    // files是一个数组，是文件夹每个文件的名称组成的数组。
+    for (const i of files) {
+      // req.url.substring(0, req.url.indexOf("?"))只取url里?前面的字符串
+      // 把文件名称加上路径，组成一个新数组
+      arr.push(`${req.url.substring(0, req.url.indexOf("?"))}${imgDir}/${i}`);
+    }
+    // 响应请求，发送新数组
+    res.send(arr);
+  });
+});
+// 门套线列表请求
+app.get("/doorBuild", function (req, res) {
   res.send(wdProcess.doorBuildMenus());
 });
 

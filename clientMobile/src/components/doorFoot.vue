@@ -35,10 +35,11 @@
         <van-field
           readonly
           clickable
-          v-model="doorCheck.doorWayWvalue"
+          v-model="doorCheck.doorLine"
           name="套线款式"
           label="套线款式"
-          placeholder="套线款式"
+          placeholder="点击选择套线款式"
+          @click="selectDoorLine"
           :rules="[{ required: true, message: '请填写门洞宽' }]"
         />
         <van-field
@@ -101,15 +102,30 @@
         </div>
       </van-form>
     </van-popup>
+    <!-- 弹出框 -->
+    <van-dialog v-model="isdoorLine" title="" :showConfirmButton="false">
+      <!-- 选择器——选择套线款式 -->
+      <van-picker
+        title="套线款式"
+        show-toolbar
+        :columns="doorLineMenus"
+        @confirm="doorLineOnConfirm"
+        @cancel="doorLineOnCancel"
+      />
+    </van-dialog>
   </div>
 </template>
 
 <script>
 import { Notify } from "vant";
+import { Toast } from "vant";
 export default {
   props: ["select"],
   data() {
     return {
+      // 控制选择器弹出框显示
+      isdoorLine: false,
+      // 按键阴影
       btnShadow: {
         isshadow: false,
       },
@@ -125,10 +141,17 @@ export default {
         wayD: "",
         // 门扇数
         doorNum: "",
+        // 套线款式
+        doorLine: "",
       },
+      // 套线款式列表
+      doorLineMenus: [],
+      // 保存请求的图片(图解图片)
+      imgArrayObj: {},
     };
   },
   methods: {
+    // 点击底部按钮
     clickFoot() {
       // console.log(this.select);
       this.btnShadow.isshadow = !this.btnShadow.isshadow;
@@ -137,6 +160,7 @@ export default {
         Notify("请选择您想查询的产品");
       }
     },
+    // 表单信息提交
     onSubmit(values) {
       // console.log("submit", values);
       this.$http
@@ -152,11 +176,60 @@ export default {
           this.$root.eventHub.$emit("results", res.data);
           // 发送是否查询点击状态信息
           this.$root.eventHub.$emit("isshow", true);
+          // 发起请求获取图解图片
+          for (const index in res.data) {
+            // 结果数据有key和value，用key请求获得对应的图解图片。
+            this.$http
+              .get("/img/diagram", { params: { img: index } })
+              .then((res) => {
+                // console.log(res);
+                if (res.status !== 200) {
+                  return;
+                }
+                // 以结果key为基础保存对应的图片到对象里，对象key为图片对应的内容名，数值为存放了服务器图片路径的数组。
+                this.imgArrayObj[index] = res.data;
+                // console.log(this.imgArrayObj);
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+          }
+          // 发存放图解图片的对象发射出去。
+          this.$root.eventHub.$emit("imgArrayObj", this.imgArrayObj);
+          // console.log(this.imgArrayObj);
         })
         .catch((err) => {
           console.error(err);
           Notify("查询失败！！！");
         });
+    },
+    // 点击选择器触发函数
+    selectDoorLine() {
+      // 发起请求，获得门套线列表
+      this.$http
+        .get("/doorBuild")
+        .then((res) => {
+          // console.log(res);
+          if (res.status !== 200) {
+            return;
+          }
+          this.doorLineMenus = res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      // 显示选择门套线的对话框
+      this.isdoorLine = true;
+    },
+    // 套线选择器点击确定
+    doorLineOnConfirm(value, index) {
+      // Toast(`当前值：${value}, 当前索引：${index}`);
+      this.doorCheck.doorLine = value;
+      this.isdoorLine = false;
+    },
+    // 套线选择器点击取消
+    doorLineOnCancel(value, index) {
+      this.isdoorLine = false;
     },
   },
   computed: {
