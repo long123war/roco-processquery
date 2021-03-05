@@ -1,4 +1,5 @@
 <template>
+  <!-- 橱柜的底部查询组件 -->
   <div class="foot">
     11111111
   </div>

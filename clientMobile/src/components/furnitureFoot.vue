@@ -1,4 +1,5 @@
 <template>
+  <!-- 家具的底部查询组件 -->
   <div class="foot">
     11111111
   </div>

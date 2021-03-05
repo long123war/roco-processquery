@@ -28,7 +28,7 @@ export default {
   methods: {
     // 点击菜单触发的回调
     clickCell(menusName, path) {
-      // 穿给兄弟组件——主内容组件。用于请求显示什么内容
+      // 传给兄弟组件——主内容组件。用于请求显示什么内容
       this.$root.eventHub.$emit("event-path", path);
       // 发送给父组件，控制菜单隐藏显示，并且查询栏也需要使用
       this.$emit("event-pathname", menusName);

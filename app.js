@@ -74,7 +74,10 @@ app.get("/img/woodenDoor", function (req, res) {
     for (const i of files) {
       // req.url.substring(0, req.url.indexOf("?"))只取url里?前面的字符串
       // 把文件名称加上路径，组成一个新数组
-      arr.push(`${req.url.substring(0, req.url.indexOf("?"))}${imgDir}/${i}`);
+      // 判断目录里的文件是不是图片
+      if (mainContent.isImg(i)) {
+        arr.push(`${req.url.substring(0, req.url.indexOf("?"))}${imgDir}/${i}`);
+      }
     }
     // 响应请求，发送新数组
     res.send(arr);
@@ -101,7 +104,9 @@ app.get("/img/diagram", function (req, res) {
     for (const i of files) {
       // req.url.substring(0, req.url.indexOf("?"))只取url里?前面的字符串
       // 把文件名称加上路径，组成一个新数组
-      arr.push(`${req.url.substring(0, req.url.indexOf("?"))}${imgDir}/${i}`);
+      if (mainContent.isImg(i)) {
+        arr.push(`${req.url.substring(0, req.url.indexOf("?"))}${imgDir}/${i}`);
+      }
     }
     // 响应请求，发送新数组
     res.send(arr);

@@ -1,4 +1,5 @@
 <template>
+  <!-- 木门的底部查询组件 -->
   <div class="foot">
     <van-row>
       <van-col span="10">

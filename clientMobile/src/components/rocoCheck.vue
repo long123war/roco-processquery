@@ -46,8 +46,9 @@
       </div> -->
     </div>
     <!-- 主内容 -->
-    <div>
-      <main-content :value="test"></main-content>
+    <div class="main">
+      <main-content :value="defaultValue"></main-content>
+      <!-- <div class="defaultvalue">{{ defaultValue }}</div> -->
     </div>
     <!-- 底栏 -->
     <component :is="footId" :select="selectName"></component>
@@ -99,7 +100,7 @@ export default {
       isMenusBlock: false,
       // 标签页下划线宽度
       tabWidth: "33%",
-      test: "这里是主内容",
+      defaultValue: "劳卡全屋定制工艺查询辅助系统",
       // 选择的定制模块，底部查询栏需要使用
       selectName: "",
     };
@@ -243,6 +244,15 @@ export default {
   }
   .van-tabs__track {
     z-index: 999;
+  }
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .defaultvalue {
+      color: #e62129;
+      width: 200px;
+    }
   }
 }
 </style>

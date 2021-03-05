@@ -37,8 +37,8 @@ function custom() {
   let rocoCustomChildren = {
     woodenDoor: [
       "单开门",
-      "子母门",
       "双开门",
+      "子母门",
       "通用推拉门01",
       "哑口套，三边窗套01，方形飘窗",
       "四边窗套",

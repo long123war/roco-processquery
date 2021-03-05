@@ -33,6 +33,7 @@
             :key="index2"
             :src="defaultPath + item2"
             radius="7px"
+            @click="viewImg(defaultPath + item2)"
           />
         </div>
       </van-collapse-item>
@@ -41,6 +42,7 @@
 </template>
 
 <script>
+import { ImagePreview } from "vant";
 export default {
   mounted() {
     // 接收提交表单请求得到的值。
@@ -96,26 +98,17 @@ export default {
       }
     },
     getResultImg(key) {
+      // console.log(this.imgArrayObj[key]);
       return this.imgArrayObj[key];
     },
     // // 点击触发
-    // isImg(index) {
-    //   this.indexName = index;
-    //   console.log(index);
-    //   this.$http
-    //     .get("/img/diag  ram", { params: { img: index } })
-    //     .then((res) => {
-    //       console.log(res);
-    //       if (res.status !== 200) {
-    //         return;
-    //       }
-    //       this.imgArrayObj = res.data;
-    //       console.log(this.imgArrayObj);
-    //     })
-    //     .catch((err) => {
-    //       console.error(err);
-    //     });
-    // },
+    viewImg(imgPath) {
+      // console.log(imgPath);
+      const imgViewArr = new Array(imgPath);
+      // console.log(imgViewArr);
+
+      ImagePreview({ images: imgViewArr, closeable: true });
+    },
   },
   computed: {},
 };
