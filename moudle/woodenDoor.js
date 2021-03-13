@@ -1,5 +1,5 @@
 // 传入数组，返回一个由每个产品对象组成的数组
-function getRocomenus(menusNameArr, pathArr) {
+function getRocomenus(menusNameArr, pathArr, desArr) {
   let menusArr = [];
   for (let i in menusNameArr) {
     let menusObj = {};
@@ -11,12 +11,17 @@ function getRocomenus(menusNameArr, pathArr) {
     } else {
       menusObj.path = pathArr[i];
     }
+    if (!desArr) {
+      menusObj.description = null;
+    } else {
+      menusObj.description = desArr[i];
+    }
     menusArr.push(menusObj);
   }
   return menusArr;
 }
 // 添加子列表的方法
-// parentArr必须未数组对象，childrenArr可为数组对象，也可以是值。
+// parentArr必须为数组对象，childrenArr可为数组对象，也可以是值。
 // parentArr(Arr)要加到谁里面,childrenArr(Arr)需要增加谁
 function addRocomenus(parentArr, childrenArr) {
   if (typeof childrenArr === "object") {
@@ -40,7 +45,7 @@ function custom() {
       "双开门",
       "子母门",
       "通用推拉门01",
-      "哑口套，三边窗套01，方形飘窗",
+      "垭口套，三边窗套01，方形飘窗",
       "四边窗套",
       "L型飘窗",
       "通用玻璃门02",
@@ -63,6 +68,20 @@ function custom() {
       "dumb",
       "luxurious",
     ],
+    woodenDoorDes: [
+      "单开木门",
+      "双开木门/玻璃门",
+      "子母木门/玻璃门",
+      "可用于厨房、衣帽间",
+      "木制套线，装饰门洞、窗",
+      "定制四边全包窗",
+      "飘窗专用窗套",
+      "单开玻璃门",
+      "极窄边框设计推拉门",
+      "无下窄边框导轨吊趟门",
+      "铝制套线，装饰门洞、窗",
+      "铝制套线轻奢木门",
+    ],
     furniTure: ["五角柜掩门"],
     furniTurePaht: ["pentagon"],
     amBry: ["暂无"],
@@ -79,7 +98,8 @@ function custom() {
           custom[i],
           getRocomenus(
             rocoCustomChildren.woodenDoor,
-            rocoCustomChildren.woodenDoorPath
+            rocoCustomChildren.woodenDoorPath,
+            rocoCustomChildren.woodenDoorDes
           )
         );
 
@@ -475,6 +495,12 @@ function doorBuildWaySize(
   cleadingD,
   glueLineNum = 1
 ) {
+  // 检测传入形参是否有空
+  for (let i in arguments) {
+    if (arguments[i] === null || arguments[i] === undefined) {
+      return null;
+    }
+  }
   // 套线宽度
   let doorLineW = 0;
   // 安装胶缝
@@ -496,12 +522,13 @@ function doorBuildWaySize(
     default:
       break;
   }
+  // 计算安装胶缝
   if (glueLineNum == 2) {
     glueLine = (doorWayValue - doorValue) / 2;
   } else {
     glueLine = doorWayValue - doorValue;
   }
-  // 计算盖墙尺寸
+  // 计算盖墙尺寸=套线宽度-套板见光厚度-安装胶缝
   const buildWayD = doorLineW - cleadingD - glueLine;
   return buildWayD;
 }

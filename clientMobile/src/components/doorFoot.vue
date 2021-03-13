@@ -119,7 +119,8 @@
 
 <script>
 import { Notify } from "vant";
-import { Toast } from "vant";
+import { throttle } from "../plugins/utils";
+import { debounce } from "../plugins/utils";
 export default {
   props: ["select"],
   data() {
@@ -162,8 +163,7 @@ export default {
       }
     },
     // 表单信息提交
-    onSubmit(values) {
-      // console.log("submit", values);
+    onSubmit: throttle(function() {
       this.$http
         .get("doorProcess/results", { params: this.doorCheck })
         .then((res) => {
@@ -203,9 +203,9 @@ export default {
           console.error(err);
           Notify("查询失败！！！");
         });
-    },
+    }, 1000),
     // 点击选择器触发函数
-    selectDoorLine() {
+    selectDoorLine: throttle(function() {
       // 发起请求，获得门套线列表
       this.$http
         .get("/doorBuild")
@@ -221,7 +221,24 @@ export default {
         });
       // 显示选择门套线的对话框
       this.isdoorLine = true;
-    },
+    }, 1000),
+
+    // // 发起请求，获得门套线列表
+    // this.$http
+    //   .get("/doorBuild")
+    //   .then((res) => {
+    //     // console.log(res);
+    //     if (res.status !== 200) {
+    //       return;
+    //     }
+    //     this.doorLineMenus = res.data;
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
+    // // 显示选择门套线的对话框
+    // this.isdoorLine = true;
+
     // 套线选择器点击确定
     doorLineOnConfirm(value, index) {
       // Toast(`当前值：${value}, 当前索引：${index}`);

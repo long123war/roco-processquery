@@ -47,7 +47,14 @@
     </div>
     <!-- 主内容 -->
     <div class="main">
-      <main-content :value="defaultValue"></main-content>
+      <main-content
+        :value="defaultValue"
+        v-if="active == '0' ? true : false"
+      ></main-content>
+      <main-content-f
+        :value="defaultValue"
+        v-else-if="active == '1' ? true : false"
+      ></main-content-f>
       <!-- <div class="defaultvalue">{{ defaultValue }}</div> -->
     </div>
     <!-- 底栏 -->
@@ -59,6 +66,7 @@
 
 <script>
 import mainContent from "./woodenDoor/single";
+import mainContentF from "./Furniture/furniture";
 import menusCell from "./rocoMenus";
 import Swiper from "swiper";
 import "../assets/swiper-bundle.min.css";
@@ -69,8 +77,13 @@ import resultDialog from "./resultDialog.vue";
 
 export default {
   components: {
+    // 木门主内容组件
     "main-content": mainContent,
+    // 家具主内容组件
+    "main-content-f": mainContentF,
+    // 菜单栏组件
     "menus-cell": menusCell,
+    // 查询结果对话框组件
     "result-dialog": resultDialog,
     doorFoot: {
       template: "<doorFoot></doorFoot>",
@@ -162,6 +175,7 @@ export default {
     },
     clickCell(menusName) {
       this.isMenusBlock = false;
+      // 菜单子组件传过来的客户选择菜单名称。用于显示查询工艺框的文本
       this.selectName = menusName;
       // console.log(this.selectName);
     },
@@ -191,7 +205,7 @@ export default {
     width: 200px;
   }
   .van-tabs {
-    margin: 0 5px;
+    margin: 0 10px;
     height: 46px;
     box-shadow: 3px 3px 10px 3px #bfbfbf;
     border-radius: 7px;

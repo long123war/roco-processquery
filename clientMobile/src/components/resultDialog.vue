@@ -86,13 +86,13 @@ export default {
         case "wayD":
           return "墙厚";
         case "buildWayOpenW":
-          return "开启面套线盖墙宽";
+          return "开启面横套线盖墙宽";
         case "buildWayOpenH":
-          return "开启面套线盖墙高";
+          return "开启面竖套线盖墙宽";
         case "buildWayNotOpenW":
-          return "非开启面套线盖墙宽";
+          return "非开启面横套线盖墙宽";
         case "buildWayNotOpenH":
-          return "非开启面套线盖墙高";
+          return "非开启面竖套线盖墙宽";
         default:
           return;
       }
@@ -119,6 +119,7 @@ export default {
   .van-cell__title {
     display: flex;
     align-items: center;
+    flex: 2;
   }
 }
 </style>

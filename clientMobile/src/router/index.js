@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import rocoCheck from "../components/rocoCheck.vue";
 import doorFoot from "../components/doorFoot.vue";
 import single from "../components/woodenDoor/single.vue";
+import furniture from "../components/Furniture/furniture.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -24,6 +25,7 @@ const routes = [
       { path: "/hanging", name: "hanging", component: single },
       { path: "/dumb", name: "dumb", component: single },
       { path: "/luxurious", name: "luxurious", component: single },
+      { path: "/pentagon", name: "pentagon", component: furniture },
     ],
   },
 ];

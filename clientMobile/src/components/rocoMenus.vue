@@ -8,7 +8,7 @@
         v-for="i in menusList"
         :key="i.id"
         :title="i.menusName"
-        label="劳卡定制模块"
+        :label="i.description"
         :to="i.path"
         class="iconfont"
         icon-prefix="icon"
@@ -44,7 +44,7 @@ export default {
           return "shuangkaimen";
         case "通用推拉门01":
           return "tuilamen";
-        case "哑口套，三边窗套01，方形飘窗":
+        case "垭口套，三边窗套01，方形飘窗":
           return "chuang";
         case "四边窗套":
           return "chuang";

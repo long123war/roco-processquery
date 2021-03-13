@@ -1,11 +1,6 @@
 <template>
-  <div class="single">
-    <van-image
-      v-for="(item, index) in imgArray"
-      :key="index"
-      :src="defaultPath + item"
-      radius="7px"
-    />
+  <div class="furniture">
+    <div>敬请期待</div>
   </div>
 </template>
 
@@ -48,13 +43,4 @@ export default {
   props: ["value"],
 };
 </script>
-<style lang="less">
-.single {
-  .van-image {
-    box-sizing: border-box;
-    margin: 0 10px 8px 10px;
-    box-shadow: 3px 3px 10px 3px #bfbfbf;
-    border: 1px solid #454545;
-  }
-}
-</style>
+<style lang="less"></style>
