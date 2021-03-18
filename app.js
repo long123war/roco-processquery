@@ -11,7 +11,10 @@ const fs = require("fs");
 app.use(cors());
 // 托管静态资源
 app.use(express.static(path.join(__dirname, "public")));
-// 定制模块列表请求，请求参数无
+// app.use(express.static(path.join(__dirname, "./clientMobile/public")));
+app.use(express.static(path.join(__dirname, "./clientMobile/dist")));
+// app.use(express.static(path.join(__dirname, "./clientMobile/dist/css")));
+// // 定制模块列表请求，请求参数无
 app.get("/Custom", (req, res) => {
   // const urlObj = url.parse(req.url ,true);
   // const query = urlObj.query;
