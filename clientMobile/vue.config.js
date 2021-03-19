@@ -24,12 +24,12 @@ module.exports = {
         .clear()
         .add("./src/main-prod.js");
 
-      // config.set("externals", {
-      //   vue: "Vue",
-      //   "vue-router": "VueRouter",
-      //   axios: "axios",
-      //   vant: "vant",
-      // });
+      config.set("externals", {
+        Vue: "Vue",
+        "vue-router": "VueRouter",
+        axios: "axios",
+        vant: "vant",
+      });
     });
 
     // 开发模式
@@ -38,6 +38,13 @@ module.exports = {
         .entry("app")
         .clear()
         .add("./src/main-dev.js");
+
+      config.set("externals", {
+        Vue: "Vue",
+        "vue-router": "VueRouter",
+        axios: "axios",
+        vant: "vant",
+      });
     });
   },
 };
