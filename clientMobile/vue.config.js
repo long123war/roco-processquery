@@ -25,10 +25,9 @@ module.exports = {
         .add("./src/main-prod.js");
 
       config.set("externals", {
-        Vue: "Vue",
+        vue: "Vue",
         "vue-router": "VueRouter",
         axios: "axios",
-        vant: "vant",
       });
     });
 
@@ -39,12 +38,11 @@ module.exports = {
         .clear()
         .add("./src/main-dev.js");
 
-      config.set("externals", {
-        Vue: "Vue",
-        "vue-router": "VueRouter",
-        axios: "axios",
-        vant: "vant",
-      });
+      // config.set("externals", {
+      //   vue: "Vue",
+      //   "vue-router": "VueRouter",
+      //   axios: "axios",
+      // });
     });
   },
 };

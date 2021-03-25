@@ -68,8 +68,6 @@
 import mainContent from "./woodenDoor/single";
 import mainContentF from "./Furniture/furniture";
 import menusCell from "./rocoMenus";
-import Swiper from "swiper";
-import "../assets/swiper-bundle.min.css";
 import doorFoot from "./doorFoot.vue";
 import furnitureFoot from "./furnitureFoot.vue";
 import kitchenFoot from "./kitchenFoot.vue";
@@ -137,10 +135,11 @@ export default {
         .catch((err) => {
           console.error(err);
         });
-      // 编程时导航，刷新后转跳回主页
+      // 编程式导航，刷新后转跳回主页
       if (window.location.pathname === "/") {
         return;
       } else {
+        console.log(1);
         this.$router.push("/");
       }
     },

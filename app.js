@@ -7,13 +7,17 @@ const app = express();
 const port = 8080;
 const cors = require("cors");
 const fs = require("fs");
+const http = require("http");
+// gzip
+const compression = require("compression");
 //加载cors,主要用于解决跨域问题，解决跨域问题
 app.use(cors());
+// 导入gzip压缩中间件
+app.use(compression());
 // 托管静态资源
 app.use(express.static(path.join(__dirname, "public")));
-// app.use(express.static(path.join(__dirname, "./clientMobile/public")));
-app.use(express.static(path.join(__dirname, "./clientMobile/dist")));
-// app.use(express.static(path.join(__dirname, "./clientMobile/dist/css")));
+app.use(express.static(path.join(__dirname, "./dist")));
+
 // // 定制模块列表请求，请求参数无
 app.get("/Custom", (req, res) => {
   // const urlObj = url.parse(req.url ,true);
