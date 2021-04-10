@@ -7,12 +7,13 @@ import furniture from "../components/Furniture/furniture.vue";
 Vue.use(VueRouter);
 
 const routes = [
+  { path: "/", redirect: "/process" },
   {
-    path: "/",
+    path: "/process",
     name: "rocoCheck",
     component: rocoCheck,
     children: [
-      { path: "/", name: "doorFoot", component: doorFoot },
+      { path: "/process", name: "doorFoot", component: doorFoot },
       { path: "/single", name: "single", component: single },
       { path: "/doubles", name: "doubles", component: single },
       { path: "/lash", name: "lash", component: single },

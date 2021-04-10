@@ -1,7 +1,5 @@
 <template>
   <div class="roco">
-    <!-- 劳卡ROGO -->
-    <img class="logo" src="../assets/rocoRogo-red.svg" alt="劳卡全屋定制" />
     <!-- 标签Tab -->
     <div>
       <van-tabs
@@ -45,18 +43,28 @@
         </div>
       </div> -->
     </div>
+    <!-- 劳卡ROGO -->
+    <img
+      v-show="path == '' ? true : false"
+      class="logo"
+      src="../assets/rocoRogo-red.svg"
+      alt="劳卡全屋定制"
+    />
     <!-- 主内容 -->
     <div class="main">
+      <!-- 木门列表内容 -->
       <main-content
         :value="defaultValue"
         v-if="active == '0' ? true : false"
       ></main-content>
+      <!-- 家具列表内容 -->
       <main-content-f
         :value="defaultValue"
         v-else-if="active == '1' ? true : false"
       ></main-content-f>
       <!-- <div class="defaultvalue">{{ defaultValue }}</div> -->
     </div>
+
     <!-- 底栏 -->
     <component :is="footId" :select="selectName"></component>
     <!-- 结果弹出框 -->
@@ -95,6 +103,10 @@ export default {
   },
   created() {
     this.getMenus();
+    // 接收rocoMenus的菜单地址
+    this.$root.eventHub.$on("event-path", (path) => {
+      this.path = path;
+    });
   },
   mounted() {},
   data() {
@@ -114,6 +126,8 @@ export default {
       defaultValue: "劳卡全屋定制工艺查询辅助系统",
       // 选择的定制模块，底部查询栏需要使用
       selectName: "",
+      // 子组件rocoMenus选择的产品
+      path: "",
     };
   },
   methods: {
@@ -136,10 +150,9 @@ export default {
           console.error(err);
         });
       // 编程式导航，刷新后转跳回主页
-      if (window.location.pathname === "/") {
-        return;
+      console.log(window.location.href.split("#")[1]);
+      if (window.location.href.split("#")[1] === "/process") {
       } else {
-        console.log(1);
         this.$router.push("/");
       }
     },
@@ -200,16 +213,23 @@ export default {
 <style lang="less" scoped>
 .roco {
   .logo {
-    margin: 8px 0 8px 0;
-    width: 200px;
+    width: 260px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
   }
   .van-tabs {
-    margin: 0 10px;
+    margin: 0px 10px;
     height: 46px;
     box-shadow: 3px 3px 10px 3px #bfbfbf;
     border-radius: 7px;
     font-size: 24px;
     margin-bottom: 20px;
+    position: relative;
+    top: 8px;
   }
 }
 </style>

@@ -61,11 +61,13 @@ export default {
       // console.log(imgArrayObj);
       this.imgArrayObj = imgArrayObj;
     });
+    // 拿入口文件定义的默认地址
+    this.defaultPath = this.$root.defaultPath;
   },
   data() {
     return {
       // 默认请求地址
-      defaultPath: "http://localhost:8080/",
+      defaultPath: "https://kjlaccount.roco.cn/",
       // 保存请求的图片
       imgArrayObj: {},
       // 控制弹出框显示

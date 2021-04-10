@@ -17,11 +17,13 @@ export default {
       this.path = path;
       this.getContent(this.path);
     });
+    // 拿入口文件定义的默认地址
+    this.defaultPath = this.$root.defaultPath;
   },
   mounted() {},
   data() {
     return {
-      defaultPath: "http://localhost:8080/",
+      defaultPath: "https://kjlaccount.roco.cn/",
       // 用户选择菜单的地址
       path: "",
       // 保存请求的图片

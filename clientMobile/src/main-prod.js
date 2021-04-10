@@ -9,7 +9,7 @@ import "amfe-flexible";
 import axios from "axios";
 
 // 配置默认请求路径
-axios.defaults.baseURL = "http://localhost:8080/";
+axios.defaults.baseURL = "https://kjlaccount.roco.cn/";
 Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 
@@ -18,5 +18,6 @@ new Vue({
   render: (h) => h(App),
   data: {
     eventHub: new Vue(),
+    defaultPath: "https://kjlaccount.roco.cn/",
   },
 }).$mount("#app");
